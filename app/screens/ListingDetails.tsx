@@ -16,7 +16,12 @@ const ListingDetails = ({ image, title, subTitle }: ListingDetailsProps) => {
         <Text style={styles.text}>{title}</Text>
         <Text style={{ ...styles.text, color: colors.secondary }}>{subTitle}</Text>
       </View>
-      <ProfileCard profileIcon={profileImage} title={profileName} subTitle={'5 Listings'} />
+      <ProfileCard
+        profileIcon={profileImage}
+        title={profileName}
+        subTitle={'5 Listings'}
+        onPress={() => console.log('Card Tapped')}
+      />
     </View>
   );
 };

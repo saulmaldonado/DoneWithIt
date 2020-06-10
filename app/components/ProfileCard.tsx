@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
+import 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-const ProfileCard = ({ profileIcon, title, subTitle, onPress }: ProfileCardProps) => {
+const ProfileCard = ({
+  profileIcon,
+  title,
+  subTitle,
+  onPress,
+  renderRightActions,
+}: ProfileCardProps) => {
   return (
-    <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
-      <View style={styles.profileCard}>
-        <Image source={profileIcon} style={styles.profileIcon} />
-        <View style={styles.profileText}>
-          <Text style={styles.name}>{title}</Text>
-          <Text style={styles.listings}>{subTitle}</Text>
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
+        <View style={styles.profileCard}>
+          <Image source={profileIcon} style={styles.profileIcon} />
+          <View style={styles.profileText}>
+            <Text style={styles.name}>{title}</Text>
+            <Text style={styles.listings}>{subTitle}</Text>
+          </View>
         </View>
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
+    </Swipeable>
   );
 };
 
@@ -49,4 +59,5 @@ interface ProfileCardProps {
   title: string;
   subTitle: string;
   onPress(): void;
+  renderRightActions(): ReactNode;
 }

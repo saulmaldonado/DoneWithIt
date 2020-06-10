@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, SafeAreaView, Platform, StatusBar } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
-import Constants from 'expo-constants';
 import Screen from '../components/Screen';
 import ListItemSeparator from '../components/ListItemSeparator';
+import ListActionDeleteAction from '../components/ListActionDeleteAction';
 
 const messages = [
   {
@@ -32,6 +32,7 @@ const MessagesScreen = () => {
             title={item.title}
             subTitle={item.description}
             onPress={() => console.log('Message Selected')}
+            renderRightActions={() => <ListActionDeleteAction onPress={() => console.log(item)} />}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
