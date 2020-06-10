@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, View, StyleSheet, Image, Text } from 'react-native';
 
-import Button from '../components/Button';
+import AppButton from '../components/AppButton';
 import colors from '../config/colors';
 
 const WelcomeScreen = () => {
@@ -15,8 +15,8 @@ const WelcomeScreen = () => {
         <Text style={styles.text}>Sell What You Don't Need</Text>
       </View>
       <View style={styles.buttons}>
-        <Button color={colors.primary}>login</Button>
-        <Button color={colors.secondary}>register</Button>
+        <AppButton color={colors.primary}>login</AppButton>
+        <AppButton color={colors.secondary}>register</AppButton>
       </View>
     </ImageBackground>
   );

@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform, StatusBar } from 'react-native';
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
-import Button from './app/components/Button';
+import AppButton from './app/components/AppButton';
 import colors from './app/config/colors';
 
 export default function App() {

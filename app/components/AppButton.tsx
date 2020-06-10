@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import colors from '../config/colors';
 
-const Button = ({ color, children }: ButtonProps) => {
+const AppButton = ({ color, children }: ButtonProps) => {
   return (
     <View style={{ ...styles.button, backgroundColor: color }}>
       <Text style={styles.text}>{children}</Text>
@@ -9,7 +10,7 @@ const Button = ({ color, children }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default AppButton;
 
 const styles = StyleSheet.create({
   button: {
