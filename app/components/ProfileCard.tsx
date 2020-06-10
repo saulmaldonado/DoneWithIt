@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import fonts from '../config/fonts';
+import colors from '../config/colors';
 
 const ProfileCard = ({ profileIcon, name, listings }: ProfileCardProps) => {
   return (

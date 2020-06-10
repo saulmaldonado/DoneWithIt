@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import fonts from '../config/fonts';
+import colors from '../config/colors';
 
-const AppButton = ({ color, children }: ButtonProps) => {
+const AppButton = ({ color = colors.primary, children }: ButtonProps) => {
   return (
-    <View style={{ ...styles.button, backgroundColor: color }}>
+    <TouchableOpacity style={{ ...styles.button, backgroundColor: color }}>
       <Text style={styles.text}>{children}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

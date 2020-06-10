@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
   card: {
     display: 'flex',
     height: 325,
-    width: '100%',
+    borderRadius: 15,
+    margin: 10,
+    overflow: 'hidden',
     backgroundColor: colors.white,
   },
   image: {
