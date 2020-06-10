@@ -12,8 +12,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <WelcomeScreen /> */}
-      {/* <ViewImageScreen /> */}
-      <ListingDetails />
+      <ViewImageScreen />
+      {/* <ListingDetails /> */}
     </View>
   );
 }

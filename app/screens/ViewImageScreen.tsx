@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 
@@ -8,8 +9,8 @@ const ViewImageScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.buttons}>
-        <View style={styles.closeButton} />
-        <View style={styles.deleteButton} />
+        <MaterialCommunityIcons name='close' color={colors.white} size={40} />
+        <MaterialCommunityIcons name='trash-can-outline' color={colors.white} size={40} />
       </View>
       <Image source={image} resizeMode={'contain'} style={styles.image} />
     </View>
@@ -38,15 +39,5 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     width: '100%',
     justifyContent: 'space-between',
-  },
-  closeButton: {
-    height: 50,
-    width: 50,
-    backgroundColor: colors.primary,
-  },
-  deleteButton: {
-    height: 50,
-    width: 50,
-    backgroundColor: colors.secondary,
   },
 });
