@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import colors from '../config/colors';
+import fonts from '../config/fonts';
 
 const AppButton = ({ color, children }: ButtonProps) => {
   return (
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     color: 'white',
-    fontFamily: 'sans-serif-medium',
+    fontFamily: fonts.primary,
     fontSize: 20,
     textTransform: 'uppercase',
   },
