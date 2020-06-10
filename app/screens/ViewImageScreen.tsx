@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+import colors from '../config/colors';
+
 const ViewImageScreen = () => {
   const image = require('../assets/chair.jpg');
   return (
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: colors.black,
   },
   image: {
     height: '80%',
@@ -39,11 +42,11 @@ const styles = StyleSheet.create({
   closeButton: {
     height: 50,
     width: 50,
-    backgroundColor: '#fc5c65',
+    backgroundColor: colors.primary,
   },
   deleteButton: {
     height: 50,
     width: 50,
-    backgroundColor: '#4ECDC4',
+    backgroundColor: colors.secondary,
   },
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { ImageBackground, View, StyleSheet, Image, Text } from 'react-native';
 
+import colors from '../config/colors';
+
 const WelcomeScreen = () => {
   const backgroundImage = require('../assets/background.jpg');
   const logo = require('../assets/logo-red.png');
@@ -40,11 +42,11 @@ const styles = StyleSheet.create({
     top: 100,
   },
   placeholder1: {
-    backgroundColor: '#fc5c65',
+    backgroundColor: colors.primary,
     flex: 1,
   },
   placeholder2: {
-    backgroundColor: '#4ECDC4',
+    backgroundColor: colors.secondary,
     flex: 1,
   },
 });
