@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, View, StyleSheet, Image, Text } from 'react-native';
 
-export const WelcomeScreen = () => {
+const WelcomeScreen = () => {
   const backgroundImage = require('../assets/background.jpg');
   const logo = require('../assets/logo-red.png');
 
@@ -18,6 +18,8 @@ export const WelcomeScreen = () => {
     </ImageBackground>
   );
 };
+
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   background: {
