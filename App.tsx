@@ -6,15 +6,14 @@ import ViewImageScreen from './app/screens/ViewImageScreen';
 import AppButton from './app/components/AppButton';
 import colors from './app/config/colors';
 import Card from './app/components/Card';
+import ListingDetails from './app/screens/ListingDetails';
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <WelcomeScreen /> */}
       {/* <ViewImageScreen /> */}
-      <Card subTitle='$100' image={require('./app/assets/jacket.jpg')}>
-        Red Jacket For Sale!
-      </Card>
+      <ListingDetails />
     </View>
   );
 }

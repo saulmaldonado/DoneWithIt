@@ -21,16 +21,16 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     display: 'flex',
-    height: 300,
+    height: 325,
     width: '100%',
+    backgroundColor: colors.white,
   },
   image: {
-    flex: 0.75,
-    height: '70%',
+    flex: 0.8,
     width: '100%',
   },
   textContainer: {
-    flex: 0.25,
+    flex: 0.2,
     padding: 15,
     display: 'flex',
     justifyContent: 'space-evenly',
