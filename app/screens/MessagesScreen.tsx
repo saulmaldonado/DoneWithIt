@@ -27,7 +27,12 @@ const MessagesScreen = () => {
         data={messages}
         keyExtractor={(messages) => messages.id.toString()}
         renderItem={({ item }) => (
-          <ProfileCard profileIcon={item.image} title={item.title} subTitle={item.description} />
+          <ProfileCard
+            profileIcon={item.image}
+            title={item.title}
+            subTitle={item.description}
+            onPress={() => console.log('Message Selected')}
+          />
         )}
         ItemSeparatorComponent={ListItemSeparator}
       />

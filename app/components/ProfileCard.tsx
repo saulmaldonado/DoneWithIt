@@ -1,17 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 
-const ProfileCard = ({ profileIcon, title, subTitle }: ProfileCardProps) => {
+const ProfileCard = ({ profileIcon, title, subTitle, onPress }: ProfileCardProps) => {
   return (
-    <View style={styles.profileCard}>
-      <Image source={profileIcon} style={styles.profileIcon} />
-      <View style={styles.profileText}>
-        <Text style={styles.name}>{title}</Text>
-        <Text style={styles.listings}>{subTitle}</Text>
+    <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
+      <View style={styles.profileCard}>
+        <Image source={profileIcon} style={styles.profileIcon} />
+        <View style={styles.profileText}>
+          <Text style={styles.name}>{title}</Text>
+          <Text style={styles.listings}>{subTitle}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
@@ -46,4 +48,5 @@ interface ProfileCardProps {
   profileIcon: any;
   title: string;
   subTitle: string;
+  onPress(): void;
 }
