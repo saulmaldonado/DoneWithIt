@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, StatusBar } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import colors from '../config/colors';
@@ -21,20 +21,18 @@ export default ViewImageScreen;
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     flex: 1,
     justifyContent: 'center',
     backgroundColor: colors.black,
   },
   image: {
-    height: '80%',
     width: '100%',
   },
   buttons: {
     display: 'flex',
     flexDirection: 'row',
     position: 'absolute',
-    top: 10,
+    top: 40,
     paddingLeft: 10,
     paddingRight: 10,
     width: '100%',

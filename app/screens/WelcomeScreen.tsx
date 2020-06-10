@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   logo: {
     display: 'flex',
     alignItems: 'center',
-    top: 50,
+    top: 100,
   },
 
   text: {

@@ -4,17 +4,19 @@ import { View, StyleSheet, Platform, StatusBar } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ListingDetails from './app/screens/ListingDetails';
 import ViewImageScreen from './app/screens/ViewImageScreen';
+import MessagesScreen from './app/screens/MessagesScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <WelcomeScreen /> */}
       {/* <ViewImageScreen /> */}
-      <ListingDetails
+      {/* <ListingDetails
         image={require('./app/assets/jacket.jpg')}
         title='Red jacket for sale'
         subTitle='$100'
-      />
+      /> */}
+      <MessagesScreen />
     </View>
   );
 }

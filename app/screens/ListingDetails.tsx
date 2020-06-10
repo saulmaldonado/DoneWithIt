@@ -8,16 +8,15 @@ import fonts from '../config/fonts';
 const ListingDetails = ({ image, title, subTitle }: ListingDetailsProps) => {
   const profileImage = require('../assets/mosh.jpg');
   const profileName = 'Mosh Hamedani';
-  const numberOfListings = 5;
 
   return (
     <View style={styles.page}>
-      <Image source={image} style={styles.image} resizeMode={'contain'} />
+      <Image source={image} style={styles.image} resizeMode={'cover'} />
       <View style={styles.itemInfo}>
         <Text style={styles.text}>{title}</Text>
         <Text style={{ ...styles.text, color: colors.secondary }}>{subTitle}</Text>
       </View>
-      <ProfileCard profileIcon={profileImage} name={profileName} listings={numberOfListings} />
+      <ProfileCard profileIcon={profileImage} title={profileName} subTitle={'5 Listings'} />
     </View>
   );
 };
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    height: '35%',
+    height: '40%',
     width: '100%',
   },
   itemInfo: {

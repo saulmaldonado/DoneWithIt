@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 
-const ProfileCard = ({ profileIcon, name, listings }: ProfileCardProps) => {
+const ProfileCard = ({ profileIcon, title, subTitle }: ProfileCardProps) => {
   return (
     <View style={styles.profileCard}>
       <Image source={profileIcon} style={styles.profileIcon} />
       <View style={styles.profileText}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.listings}>{listings} Listings</Text>
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.listings}>{subTitle}</Text>
       </View>
     </View>
   );
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
 
 interface ProfileCardProps {
   profileIcon: any;
-  name: string;
-  listings: number;
+  title: string;
+  subTitle: string;
 }
