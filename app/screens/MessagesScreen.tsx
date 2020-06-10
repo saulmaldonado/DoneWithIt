@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, SafeAreaView, Platform, StatusBar } f
 import ProfileCard from '../components/ProfileCard';
 import Constants from 'expo-constants';
 import Screen from '../components/Screen';
+import ListItemSeparator from '../components/ListItemSeparator';
 
 const messages = [
   {
@@ -28,6 +29,7 @@ const MessagesScreen = () => {
         renderItem={({ item }) => (
           <ProfileCard profileIcon={item.image} title={item.title} subTitle={item.description} />
         )}
+        ItemSeparatorComponent={ListItemSeparator}
       />
     </Screen>
   );

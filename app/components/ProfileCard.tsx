@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
   profileCard: {
     display: 'flex',
     flexDirection: 'row',
-    marginLeft: 10,
-    marginRight: 10,
+    padding: 15,
   },
   profileIcon: {
     height: 75,
