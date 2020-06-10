@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageBackground, View, StyleSheet, Image, Text } from 'react-native';
 
+import Button from '../components/Button';
 import colors from '../config/colors';
 
 const WelcomeScreen = () => {
@@ -8,14 +9,14 @@ const WelcomeScreen = () => {
   const logo = require('../assets/logo-red.png');
 
   return (
-    <ImageBackground source={backgroundImage} style={styles.background}>
+    <ImageBackground source={backgroundImage} style={styles.background} blurRadius={5}>
       <View style={styles.logo}>
         <Image source={logo} style={styles.logoImage} />
-        <Text>Sell What You Don't Need</Text>
+        <Text style={styles.text}>Sell What You Don't Need</Text>
       </View>
       <View style={styles.buttons}>
-        <View style={styles.placeholder1} />
-        <View style={styles.placeholder2} />
+        <Button color={colors.primary}>login</Button>
+        <Button color={colors.secondary}>register</Button>
       </View>
     </ImageBackground>
   );
@@ -28,9 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    padding: 10,
   },
   buttons: {
     height: '20%',
+    justifyContent: 'space-evenly',
   },
   logoImage: {
     height: 100,
@@ -39,14 +42,12 @@ const styles = StyleSheet.create({
   logo: {
     display: 'flex',
     alignItems: 'center',
-    top: 100,
+    top: 50,
   },
-  placeholder1: {
-    backgroundColor: colors.primary,
-    flex: 1,
-  },
-  placeholder2: {
-    backgroundColor: colors.secondary,
-    flex: 1,
+
+  text: {
+    marginTop: 15,
+    fontWeight: '700',
+    fontSize: 20,
   },
 });
