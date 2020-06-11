@@ -1,5 +1,14 @@
 import React, { ReactNode, FunctionComponent } from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, ImageComponent } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+  ImageComponent,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 import 'react-native-gesture-handler';
@@ -12,11 +21,12 @@ const ProfileCard = ({
   IconComponent,
   onPress,
   renderRightActions,
+  style,
 }: ProfileCardProps) => {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
-        <View style={styles.profileCard}>
+        <View style={[styles.profileCard, style]}>
           {IconComponent}
           {profileIcon && <Image source={profileIcon} style={styles.profileIcon} />}
           <View style={styles.profileText}>
@@ -36,6 +46,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     padding: 15,
+    backgroundColor: colors.white,
   },
   profileIcon: {
     height: 75,
@@ -64,4 +75,5 @@ interface ProfileCardProps {
   IconComponent?: JSX.Element;
   onPress?: () => void;
   renderRightActions?: () => ReactNode;
+  style?: StyleProp<ViewStyle>;
 }
