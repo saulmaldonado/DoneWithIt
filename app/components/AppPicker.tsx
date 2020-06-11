@@ -13,9 +13,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
 import PickerItem from './PickerItem';
+import AppPickerModal from './AppPickerModal';
 
 const AppPicker = ({ icon, placeholder, items, onSelectItem, selectedItem }: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
@@ -33,22 +35,12 @@ const AppPicker = ({ icon, placeholder, items, onSelectItem, selectedItem }: App
           <MaterialCommunityIcons name='chevron-down' size={25} color={colors.medium} />
         </View>
       </TouchableWithoutFeedback>
-      <Modal visible={modalVisible} animationType='slide'>
-        <Button title='Close' onPress={() => setModalVisible(false)} />
-        <FlatList
-          data={items}
-          keyExtractor={({ value }) => value.toString()}
-          renderItem={({ item }) => (
-            <PickerItem
-              label={item.label}
-              onPress={() => {
-                setModalVisible(false);
-                onSelectItem(item);
-              }}
-            />
-          )}
-        />
-      </Modal>
+      <AppPickerModal
+        items={items}
+        onSelectItem={onSelectItem}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      ></AppPickerModal>
     </>
   );
 };
