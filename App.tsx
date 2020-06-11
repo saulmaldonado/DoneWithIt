@@ -5,6 +5,8 @@ import WelcomeScreen from './app/screens/WelcomeScreen';
 import ListingDetails from './app/screens/ListingDetails';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
+import MyAccountScreen from './app/screens/MyAccountScreen';
+import Icon from './app/components/Icon';
 
 export default function App() {
   return (
@@ -16,7 +18,8 @@ export default function App() {
         title='Red jacket for sale'
         subTitle='$100'
       /> */}
-      <MessagesScreen />
+      {/* <MessagesScreen /> */}
+      <MyAccountScreen />
     </View>
   );
 }
