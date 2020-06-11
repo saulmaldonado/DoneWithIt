@@ -8,6 +8,7 @@ const Card = ({ children: title, subTitle, image }: CardProps) => {
   return (
     <View style={styles.card}>
       <Image source={image} style={styles.image} resizeMode={'cover'} />
+
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subTitle}>{subTitle}</Text>
@@ -21,7 +22,7 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     display: 'flex',
-    height: 325,
+    height: 275,
     borderRadius: 15,
     margin: 10,
     overflow: 'hidden',

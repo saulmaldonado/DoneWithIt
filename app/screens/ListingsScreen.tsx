@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Screen from '../components/Screen';
 import Card from '../components/Card';
+import colors from '../config/colors';
 
 const listings = [
   {
@@ -20,11 +21,11 @@ const listings = [
 
 const ListingsScreen = () => {
   return (
-    <Screen>
+    <Screen style={{ backgroundColor: colors.light }}>
       <FlatList
         data={listings}
         renderItem={({ item }) => (
-          <Card image={item.image} subTitle={`$ ${item.price}`}>
+          <Card image={item.image} subTitle={`$${item.price}`}>
             {item.title}
           </Card>
         )}
