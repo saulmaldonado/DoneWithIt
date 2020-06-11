@@ -8,6 +8,7 @@ import MessagesScreen from './app/screens/MessagesScreen';
 import MyAccountScreen from './app/screens/MyAccountScreen';
 import Icon from './app/components/Icon';
 import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
 
 export default function App() {
   return (
@@ -21,7 +22,8 @@ export default function App() {
       /> */}
       {/* <MessagesScreen /> */}
       {/* <MyAccountScreen /> */}
-      <ListingsScreen />
+      {/* <ListingsScreen /> */}
+      <AppTextInput icon='email' placeholder='Email' />
     </View>
   );
 }
@@ -29,5 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
   },
 });
