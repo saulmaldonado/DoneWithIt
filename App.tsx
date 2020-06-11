@@ -7,6 +7,7 @@ import ViewImageScreen from './app/screens/ViewImageScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
 import MyAccountScreen from './app/screens/MyAccountScreen';
 import Icon from './app/components/Icon';
+import ListingsScreen from './app/screens/ListingsScreen';
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
         subTitle='$100'
       /> */}
       {/* <MessagesScreen /> */}
-      <MyAccountScreen />
+      {/* <MyAccountScreen /> */}
+      <ListingsScreen />
     </View>
   );
 }
