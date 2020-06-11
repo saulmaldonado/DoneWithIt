@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Platform, StatusBar } from 'react-native';
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
@@ -9,8 +9,17 @@ import MyAccountScreen from './app/screens/MyAccountScreen';
 import Icon from './app/components/Icon';
 import ListingsScreen from './app/screens/ListingsScreen';
 import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
+
+const categories = [
+  { label: 'Furniture', value: 1 },
+  { label: 'Clothing', value: 2 },
+  { label: 'Cameras', value: 3 },
+];
 
 export default function App() {
+  const [category, setCategory] = useState();
+
   return (
     <View style={styles.container}>
       {/* <WelcomeScreen /> */}
@@ -23,7 +32,13 @@ export default function App() {
       {/* <MessagesScreen /> */}
       {/* <MyAccountScreen /> */}
       {/* <ListingsScreen /> */}
-      <AppTextInput icon='email' placeholder='Email' />
+      <AppPicker
+        icon='apps'
+        placeholder='Category'
+        items={categories}
+        selectedItem={category}
+        onSelectItem={(item: any) => setCategory(item)}
+      />
     </View>
   );
 }
