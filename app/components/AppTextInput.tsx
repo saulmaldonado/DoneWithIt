@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
   },
 });
 
-type AppTextInputProps = {
+export type AppTextInputProps = {
   icon?: string;
 } & TextInputProps;
