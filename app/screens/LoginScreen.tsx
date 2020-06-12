@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Screen from '../components/Screen';
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
-import colors from '../config/colors';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import AppErrorMessage from '../components/AppErrorMessage';
 import AppFormField from '../components/AppFormField';
+import SubmitButton from '../components/SubmitButton';
 
 export type LoginScreenFormValues = {
   email: string;
@@ -29,7 +26,7 @@ const LoginScreen = () => {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
+        {() => (
           <>
             <AppFormField
               name='email'
@@ -50,7 +47,7 @@ const LoginScreen = () => {
               textContentType='password'
               secureTextEntry
             />
-            <AppButton title='Login' onPress={handleSubmit} />
+            <SubmitButton title='Login' />
           </>
         )}
       </Formik>
