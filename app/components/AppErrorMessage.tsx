@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import colors from '../config/colors';
 
-const AppErrorMessage = ({ error }: AppErrorMessageProps) => {
-  if (!error) return null;
+const AppErrorMessage = ({ error, visible }: AppErrorMessageProps) => {
+  if (!error || !visible) return null;
 
   return <Text style={styles.error}>{error}</Text>;
 };
@@ -18,4 +18,5 @@ const styles = StyleSheet.create({
 
 type AppErrorMessageProps = {
   error: string | undefined;
+  visible: boolean | undefined;
 };
