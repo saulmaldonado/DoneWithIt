@@ -19,7 +19,7 @@ const AppTextInput = ({ icon, ...props }: AppTextInputProps) => {
         <MaterialCommunityIcons name={icon} size={35} color={colors.medium} style={styles.icon} />
       )}
 
-      <TextInput style={styles.textInput} {...props} />
+      <TextInput style={styles.textInput} {...props} placeholderTextColor={colors.medium} />
     </View>
   );
 };

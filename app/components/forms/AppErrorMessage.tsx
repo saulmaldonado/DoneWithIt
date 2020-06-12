@@ -13,6 +13,7 @@ export default AppErrorMessage;
 const styles = StyleSheet.create({
   error: {
     color: colors.danger,
+    paddingLeft: 10,
   },
 });
 

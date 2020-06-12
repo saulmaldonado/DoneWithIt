@@ -4,11 +4,6 @@ import Screen from '../components/Screen';
 import * as yup from 'yup';
 import { AppFormField, SubmitButton, AppForm } from '../components/forms';
 
-export type LoginScreenFormValues = {
-  email: string;
-  password: string;
-};
-
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
   password: yup.string().required().min(4).label('Password'),
