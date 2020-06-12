@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import AppFormField from '../components/AppFormField';
 import SubmitButton from '../components/SubmitButton';
+import AppForm from '../components/AppForm';
 
 export type LoginScreenFormValues = {
   email: string;
@@ -21,36 +22,32 @@ const LoginScreen = () => {
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />
 
-      <Formik<LoginScreenFormValues>
+      <AppForm
         initialValues={{ email: '', password: '' }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {() => (
-          <>
-            <AppFormField
-              name='email'
-              placeholder='Email Address'
-              icon='email'
-              autoCapitalize='none'
-              autoCorrect={false}
-              keyboardType='email-address'
-              textContentType='emailAddress'
-            />
+        <AppFormField
+          name='email'
+          placeholder='Email Address'
+          icon='email'
+          autoCapitalize='none'
+          autoCorrect={false}
+          keyboardType='email-address'
+          textContentType='emailAddress'
+        />
 
-            <AppFormField
-              name='password'
-              autoCapitalize='none'
-              autoCorrect={false}
-              icon='lock'
-              placeholder='Password'
-              textContentType='password'
-              secureTextEntry
-            />
-            <SubmitButton title='Login' />
-          </>
-        )}
-      </Formik>
+        <AppFormField
+          name='password'
+          autoCapitalize='none'
+          autoCorrect={false}
+          icon='lock'
+          placeholder='Password'
+          textContentType='password'
+          secureTextEntry
+        />
+        <SubmitButton title='Login' />
+      </AppForm>
     </Screen>
   );
 };
