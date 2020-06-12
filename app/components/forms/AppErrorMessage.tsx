@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 const AppErrorMessage = ({ error, visible }: AppErrorMessageProps) => {
   if (!error || !visible) return null;

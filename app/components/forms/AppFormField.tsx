@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AppTextInput from './AppTextInput';
+import AppTextInput from '../AppTextInput';
 import AppErrorMessage from './AppErrorMessage';
 import { useFormikContext, FormikErrors, FormikContextType, FormikTouched } from 'formik';
-import { AppTextInputProps } from './AppTextInput';
+import { AppTextInputProps } from '../AppTextInput';
 
 const AppFormField = ({ name, ...props }: AppFormFieldProps) => {
   const {
