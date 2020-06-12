@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TextInputProperties,
+  TextInputProps,
+  TextProps,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
@@ -30,7 +38,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   textInput: {
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: fonts.primary,
     color: colors.dark,
     flex: 1,
@@ -39,5 +47,4 @@ const styles = StyleSheet.create({
 
 type AppTextInputProps = {
   icon?: string;
-  [key: string]: any;
-};
+} & TextInputProps;

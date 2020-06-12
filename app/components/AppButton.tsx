@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 
-const AppButton = ({ color = colors.primary, children }: ButtonProps) => {
+const AppButton = ({ title, color = colors.primary, onPress }: ButtonProps) => {
   return (
-    <TouchableOpacity style={{ ...styles.button, backgroundColor: color }}>
-      <Text style={styles.text}>{children}</Text>
+    <TouchableOpacity style={{ ...styles.button, backgroundColor: color }} onPress={onPress}>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 });
 
 interface ButtonProps {
-  color: string;
-  children: string;
+  color?: string;
+  title: string;
+  onPress?: () => void;
 }
