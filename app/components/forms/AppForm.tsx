@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Formik, FormikConfig } from 'formik';
 
+export const formValidation = React.createContext(null);
 const AppForm = ({ initialValues, onSubmit, validationSchema, children }: AppFormProps) => {
   return (
     <Formik<FormSchema>
@@ -9,7 +10,13 @@ const AppForm = ({ initialValues, onSubmit, validationSchema, children }: AppFor
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {() => <>{children}</>}
+      {() => {
+        return (
+          <>
+            <formValidation.Provider value={validationSchema}>{children}</formValidation.Provider>
+          </>
+        );
+      }}
     </Formik>
   );
 };

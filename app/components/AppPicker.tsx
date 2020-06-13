@@ -12,7 +12,6 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
-import PickerItem from './PickerItem';
 import AppPickerModal from './AppPickerModal';
 
 const AppPicker = ({ icon, placeholder, items, onSelectItem, selectedItem }: AppPickerProps) => {

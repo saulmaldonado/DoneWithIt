@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Screen from '../components/Screen';
-import { AppForm, AppFormField, SubmitButton } from '../components/forms';
+import {
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  AppConfirmPasswordConfirmationFields,
+} from '../components/forms';
 import * as yup from 'yup';
 
-const validationSchema = yup.object().shape({
+let validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email'),
-  password: yup.string().required().min(4).label('Password'),
-  reenterPassword: yup
-    .string()
-    .required()
-    .oneOf([yup.ref('password')], 'Passwords do not match')
-    .label('Re-enter Password'),
 });
 
 const initialValues = {
@@ -23,12 +22,14 @@ const initialValues = {
 };
 
 const RegisterScreen = () => {
+  const [formValidation, setFormValidation] = useState(validationSchema);
+
   return (
     <Screen style={styles.container}>
       <AppForm
         initialValues={initialValues}
         onSubmit={(values) => console.log(values)}
-        validationSchema={validationSchema}
+        validationSchema={formValidation}
       >
         <AppFormField
           name='name'
@@ -46,23 +47,11 @@ const RegisterScreen = () => {
           textContentType='name'
           icon='email'
         />
-        <AppFormField
-          name='password'
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='lock'
-          placeholder='Password'
-          textContentType='password'
-          secureTextEntry
-        />
-        <AppFormField
-          name='reenterPassword'
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='lock'
-          placeholder='Re-enter Password'
-          textContentType='password'
-          secureTextEntry
+
+        <AppConfirmPasswordConfirmationFields
+          password='password'
+          confirmPassword='reenterPassword'
+          setFormValidation={setFormValidation}
         />
         <SubmitButton title='Register' />
       </AppForm>

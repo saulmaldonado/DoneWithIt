@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet } from 'react-native';
 import AppTextInput from '../AppTextInput';
 import AppErrorMessage from './AppErrorMessage';
 import { useFormikContext, FormikErrors, FormikContextType, FormikTouched } from 'formik';
@@ -11,7 +11,8 @@ const AppFormField = ({ name, ...props }: AppFormFieldProps) => {
     errors,
     setFieldTouched,
     touched,
-  }: AppFormFieldUseFormikContext = useFormikContext<formSchema>();
+  }: AppFormFieldUseFormikContext = useFormikContext<FormSchema>();
+
   return (
     <>
       <AppTextInput
@@ -36,8 +37,8 @@ type AppFormFieldProps = {
 type AppFormFieldUseFormikContext = {
   touched: FormikTouched<{ [name: string]: boolean }>;
   errors: FormikErrors<{ [name: string]: string }>;
-} & Pick<FormikContextType<formSchema>, 'handleChange' | 'setFieldTouched'>;
+} & Pick<FormikContextType<FormSchema>, 'handleChange' | 'setFieldTouched'>;
 
-type formSchema = {
+type FormSchema = {
   [name: string]: string | number | boolean;
 };

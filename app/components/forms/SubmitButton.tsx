@@ -7,7 +7,7 @@ const SubmitButton = ({ title }: AppSubmitButtonProps) => {
   const { handleSubmit } = useFormikContext();
   return (
     <View>
-      <AppButton title='Login' onPress={handleSubmit} />
+      <AppButton title={title} onPress={handleSubmit} />
     </View>
   );
 };
