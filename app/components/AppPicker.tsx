@@ -30,7 +30,9 @@ const AppPicker = ({ icon, placeholder, items, onSelectItem, selectedItem }: App
             />
           )}
 
-          <Text style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</Text>
+          <Text style={selectedItem ? styles.text : styles.placeholderText}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </Text>
           <MaterialCommunityIcons name='chevron-down' size={25} color={colors.medium} />
         </View>
       </TouchableWithoutFeedback>
@@ -63,10 +65,17 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlignVertical: 'center',
   },
+  placeholderText: {
+    fontSize: 15,
+    fontFamily: fonts.primary,
+    flex: 1,
+    textAlignVertical: 'center',
+    color: colors.medium,
+  },
 });
 
 type AppPickerProps = {
-  icon: string;
+  icon?: string;
   placeholder: string;
   items: any[];
   selectedItem: any;

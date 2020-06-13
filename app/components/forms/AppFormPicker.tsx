@@ -40,7 +40,7 @@ const styles = StyleSheet.create({});
 type AppFormPickerProps = {
   name: string;
   items: { label: string; value: any }[];
-  icon: string;
+  icon?: string;
   placeholder: string;
 };
 

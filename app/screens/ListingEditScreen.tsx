@@ -13,8 +13,8 @@ const categories = [
 ];
 const validationSchema = yup.object().shape({
   title: yup.string().required().min(1).label('Title'),
-  price: yup.number().min(1).max(10000).label('Price'),
   description: yup.string().optional().label('Description'),
+  price: yup.number().min(1).max(10000).label('Price'),
 });
 
 const initialValues = { title: '', price: 0, category: undefined, description: '' };
@@ -27,10 +27,16 @@ const ListingEditScreen = () => {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField name='title' placeholder='Title' autoCorrect={false} />
-        <AppFormField name='price' placeholder='Price' keyboardType='number-pad' />
-        <AppFormPicker name='category' icon='apps' items={categories} placeholder='Category' />
-        <AppFormField name='description' placeholder='Description' />
+        <AppFormField name='title' placeholder='Title' autoCorrect={false} maxLength={255} />
+        <AppFormField name='price' placeholder='Price' maxLength={8} keyboardType='number-pad' />
+        <AppFormPicker name='category' items={categories} placeholder='Category' />
+        <AppFormField
+          name='description'
+          placeholder='Description'
+          maxLength={255}
+          multiline
+          numberOfLines={3}
+        />
 
         <SubmitButton title='Post' />
       </AppForm>
