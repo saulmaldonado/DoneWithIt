@@ -14,13 +14,7 @@ import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import { AppForm, SubmitButton } from './app/components/forms';
 import AppFormPicker from './app/components/forms/AppFormPicker';
-
-const categories = [
-  { label: 'Furniture', value: 1 },
-  { label: 'Clothing', value: 2 },
-  { label: 'Cameras', value: 3 },
-  { label: 'None', value: null },
-];
+import ListingEditScreen from './app/screens/ListingEditScreen';
 
 export default function App() {
   const [category, setCategory] = useState();
@@ -39,15 +33,8 @@ export default function App() {
       {/* <ListingsScreen /> */}
       {/* <LoginScreen /> */}
       {/* <RegisterScreen /> */}
-
-      <AppForm
-        initialValues={{ category: undefined, category2: undefined }}
-        onSubmit={(values) => console.log(values)}
-      >
-        <AppFormPicker icon='apps' items={categories} name='category' placeholder='category' />
-        <AppFormPicker icon='apps' items={categories} name='category2' placeholder='category' />
-        <SubmitButton title='submit' />
-      </AppForm>
+      {/* <ListingsScreen /> */}
+      <ListingEditScreen />
     </View>
   );
 }
