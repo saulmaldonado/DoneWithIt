@@ -1,0 +1,25 @@
+diff --git a/node_modules/formik/dist/formik.cjs.development.js b/node_modules/formik/dist/formik.cjs.development.js
+index a40e31e..5311980 100644
+--- a/node_modules/formik/dist/formik.cjs.development.js
++++ b/node_modules/formik/dist/formik.cjs.development.js
+@@ -1093,7 +1093,9 @@ function Formik(props) {
+   var component = props.component,
+       children = props.children,
+       render = props.render,
+-      innerRef = props.innerRef; // This allows folks to pass a ref to <Formik />
++      innerRef = props.innerRef,
++      validationSchema = props.validationSchema;
++      // validationSchema = props.validationSchema // This allows folks to pass a ref to <Formik />
+ 
+   React.useImperativeHandle(innerRef, function () {
+     return formikbag;
+@@ -1105,7 +1107,8 @@ function Formik(props) {
+ 
+   }, []);
+   return React.createElement(FormikProvider, {
+-    value: formikbag
++    value: {...formikbag, validationSchema}
++    // value: {...formikbag, validationSchema}
+   }, component ? React.createElement(component, formikbag) : render ? render(formikbag) : children // children come last, always called
+   ? isFunction(children) ? children(formikbag) : !isEmptyChildren(children) ? React.Children.only(children) : null : null);
+ }

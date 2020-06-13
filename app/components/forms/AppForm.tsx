@@ -1,21 +1,18 @@
-import React from 'react';
+import React, { Context, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { Formik, FormikConfig } from 'formik';
+import generateSchema from './generateSchema';
+import { Schema, ObjectSchema } from 'yup';
 
-export const formValidation = React.createContext(null);
 const AppForm = ({ initialValues, onSubmit, validationSchema, children }: AppFormProps) => {
   return (
     <Formik<FormSchema>
       initialValues={initialValues}
       onSubmit={onSubmit}
-      validationSchema={validationSchema}
+      validationSchema={generateSchema(children, validationSchema)}
     >
       {() => {
-        return (
-          <>
-            <formValidation.Provider value={validationSchema}>{children}</formValidation.Provider>
-          </>
-        );
+        return <>{children}</>;
       }}
     </Formik>
   );
@@ -27,8 +24,9 @@ const styles = StyleSheet.create({});
 
 type AppFormProps = {
   children: JSX.Element[];
-} & Pick<FormikConfig<FormSchema>, 'initialValues' | 'onSubmit' | 'validationSchema'>;
+  validationSchema?: ObjectSchema<any>;
+} & Pick<FormikConfig<FormSchema>, 'initialValues' | 'onSubmit'>;
 
-type FormSchema = {
+export type FormSchema = {
   [name: string]: string | number | boolean;
 };

@@ -1,32 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import AppFormField from './AppFormField';
-import { useFormikContext, withFormik } from 'formik';
-import * as yup from 'yup';
-import { formValidation } from './AppForm';
 
 const AppPasswordConfirmationFields = ({
   password,
   confirmPassword,
-  setFormValidation,
 }: AppPasswordConfirmationFieldsProps) => {
-  const formValidationContext: any = useContext(formValidation);
-
-  useEffect(() => {
-    setFormValidation(
-      formValidationContext.concat(
-        yup.object().shape({
-          password: yup.string().required().min(4).label('Password'),
-          reenterPassword: yup
-            .string()
-            .required()
-            .oneOf([yup.ref('password')], 'Passwords do not match')
-            .label('Re-enter Password'),
-        })
-      )
-    );
-  }, []);
-
   return (
     <>
       <AppFormField
@@ -54,9 +33,9 @@ const AppPasswordConfirmationFields = ({
 export default AppPasswordConfirmationFields;
 
 type AppPasswordConfirmationFieldsProps = {
+  name: string[];
   password: string;
   confirmPassword: string;
-  setFormValidation: (validations: any) => void;
 };
 
 const styles = StyleSheet.create({});

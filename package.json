@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/hooks": "^2.6.0",
@@ -26,6 +27,7 @@
     "@types/react-native": "~0.61.17",
     "@types/yup": "^0.29.2",
     "babel-preset-expo": "~8.1.0",
+    "patch-package": "^6.2.2",
     "typescript": "~3.8.3"
   },
   "private": true
