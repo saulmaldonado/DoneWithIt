@@ -34,8 +34,8 @@ export default function App() {
       {/* <MessagesScreen /> */}
       {/* <MyAccountScreen /> */}
       {/* <ListingsScreen /> */}
-      {/* <LoginScreen /> */}
-      <RegisterScreen />
+      <LoginScreen />
+      {/* <RegisterScreen /> */}
     </View>
   );
 }
