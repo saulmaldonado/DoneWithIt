@@ -28,5 +28,5 @@ type AppFormProps = {
 } & Pick<FormikConfig<FormSchema>, 'initialValues' | 'onSubmit'>;
 
 export type FormSchema = {
-  [name: string]: string | number | boolean;
+  [name: string]: any;
 };

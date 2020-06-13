@@ -13,7 +13,7 @@ const AppPickerModal = ({
       <Button title='Close' onPress={() => setModalVisible(false)} />
       <FlatList
         data={items}
-        keyExtractor={({ value }) => value.toString()}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <PickerItem
             label={item.label}

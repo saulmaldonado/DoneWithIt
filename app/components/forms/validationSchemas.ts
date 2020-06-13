@@ -4,6 +4,7 @@ const validations: validationsType = {
   AppNameField: yup.string().required().label('Name'),
   AppEmailField: yup.string().required().email().label('Email'),
   AppPasswordField: yup.string().required().min(4).label('Password'),
+  AppFormPicker: yup.mixed().defined().label('Selector'),
   AppPasswordConfirmationFields: [
     yup.string().required().min(4).label('Password'),
     yup
