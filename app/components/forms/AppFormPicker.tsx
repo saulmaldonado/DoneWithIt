@@ -27,6 +27,7 @@ const AppFormPicker = ({ name, items, icon, placeholder }: AppFormPickerProps) =
           setFieldValue(name, item.value);
           setFieldTouched(name, true, false);
         }}
+        style={{ width: '75%' }}
       />
       <AppErrorMessage error={errors[name]} visible={touched[name]} />
     </>

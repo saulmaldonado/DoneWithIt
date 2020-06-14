@@ -8,19 +8,27 @@ import {
   Modal,
   Button,
   FlatList,
+  ViewStyle,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
 import AppPickerModal from './AppPickerModal';
 
-const AppPicker = ({ icon, placeholder, items, onSelectItem, selectedItem }: AppPickerProps) => {
+const AppPicker = ({
+  icon,
+  placeholder,
+  items,
+  onSelectItem,
+  selectedItem,
+  style,
+}: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -80,5 +88,6 @@ type AppPickerProps = {
   items: any[];
   selectedItem: any;
   onSelectItem: (item: any) => void;
+  style?: ViewStyle;
   [key: string]: any;
 };

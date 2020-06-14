@@ -11,6 +11,7 @@ const AppPriceField = ({ name }: AppPriceFieldProps) => {
       keyboardType='number-pad'
       iconSize={20}
       icon='square-inc-cash'
+      style={{ width: '50%' }}
     />
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TextInputProps } from 'react-native';
+import { StyleSheet, View, TextInput, TextInputProps, ViewStyle } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
 
-const AppTextInput = ({ icon, iconSize = 35, ...props }: AppTextInputProps) => {
+const AppTextInput = ({ icon, iconSize = 35, style, ...props }: AppTextInputProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
@@ -46,4 +46,5 @@ const styles = StyleSheet.create({
 export type AppTextInputProps = {
   icon?: string;
   iconSize?: number;
+  style?: ViewStyle;
 } & TextInputProps;
