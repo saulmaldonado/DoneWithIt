@@ -15,9 +15,10 @@ import RegisterScreen from './app/screens/RegisterScreen';
 import { AppForm, SubmitButton } from './app/components/forms';
 import AppFormPicker from './app/components/forms/AppFormPicker';
 import ListingEditScreen from './app/screens/ListingEditScreen';
+import AppImageInput from './app/components/AppImageInput';
 
 export default function App() {
-  const [category, setCategory] = useState();
+  const [image, setImage] = useState<string | undefined>();
 
   return (
     <View style={styles.container}>
@@ -34,7 +35,8 @@ export default function App() {
       {/* <LoginScreen /> */}
       {/* <RegisterScreen /> */}
       {/* <ListingsScreen /> */}
-      <ListingEditScreen />
+      {/* <ListingEditScreen /> */}
+      <AppImageInput imageUri={image} onChangeImage={(uri: string | undefined) => setImage(uri)} />
       {/* <MessagesScreen /> */}
     </View>
   );
@@ -43,7 +45,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });
