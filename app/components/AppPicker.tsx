@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableWithoutFeedback,
-  Modal,
-  Button,
-  FlatList,
-  ViewStyle,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, ViewStyle } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
 import AppPickerModal from './AppPickerModal';
+import PickerItemIcon from './forms/PickerItemIcon';
+import PickerItem from './PickerItem';
 
 const AppPicker = ({
   icon,
@@ -22,6 +14,8 @@ const AppPicker = ({
   onSelectItem,
   selectedItem,
   style,
+  numColumns,
+  pickerType,
 }: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -49,6 +43,8 @@ const AppPicker = ({
         onSelectItem={onSelectItem}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        PickerItemComponent={pickerType === 'icon' ? PickerItemIcon : PickerItem}
+        numColumns={numColumns}
       ></AppPickerModal>
     </>
   );
@@ -89,5 +85,6 @@ type AppPickerProps = {
   selectedItem: any;
   onSelectItem: (item: any) => void;
   style?: ViewStyle;
-  [key: string]: any;
+  numColumns: number;
+  pickerType: 'icon' | null;
 };

@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import AppPicker from '../AppPicker';
 import { useFormikContext, FormikTouched, FormikErrors, FormikContextType } from 'formik';
 import { FormSchema } from './AppForm';
 import AppErrorMessage from './AppErrorMessage';
 
-const AppFormPicker = ({ name, items, icon, placeholder }: AppFormPickerProps) => {
+const AppFormPicker = ({
+  name,
+  items,
+  icon,
+  placeholder,
+  numColumns = 1,
+  pickerType = null,
+}: AppFormPickerProps) => {
   const [selected, setSelected] = useState();
 
   const {
@@ -27,7 +34,9 @@ const AppFormPicker = ({ name, items, icon, placeholder }: AppFormPickerProps) =
           setFieldValue(name, item.value);
           setFieldTouched(name, true, false);
         }}
+        numColumns={numColumns}
         style={{ width: '75%' }}
+        pickerType={pickerType}
       />
       <AppErrorMessage error={errors[name]} visible={touched[name]} />
     </>
@@ -43,6 +52,8 @@ type AppFormPickerProps = {
   items: { label: string; value: any }[];
   icon?: string;
   placeholder: string;
+  numColumns?: number;
+  pickerType?: 'icon' | null;
 };
 
 type AppFormPickerUseFormikContext = {
