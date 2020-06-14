@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Button, Image } from 'react-native';
+import { StyleSheet, View, Button, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import colors from '../config/colors';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type AppImageInputProps = {
   imageUri: string | undefined;
@@ -33,7 +35,11 @@ const AppImageInput = ({ imageUri, onChangeImage }: AppImageInputProps) => {
 
   return (
     <View>
-      <Button onPress={getImage} title='Upload Picture' />
+      <TouchableOpacity onPress={getImage}>
+        <View style={styles.addImageButton}>
+          <MaterialCommunityIcons size={50} name='camera' color={colors.medium} />
+        </View>
+      </TouchableOpacity>
       {imageUri && (
         <Image
           source={{ uri: imageUri }}
@@ -47,4 +53,13 @@ const AppImageInput = ({ imageUri, onChangeImage }: AppImageInputProps) => {
 
 export default AppImageInput;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  addImageButton: {
+    height: 100,
+    width: 100,
+    borderRadius: 20,
+    backgroundColor: colors.light,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
