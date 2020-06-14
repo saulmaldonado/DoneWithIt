@@ -34,18 +34,15 @@ const AppImageInput = ({ imageUri, onChangeImage }: AppImageInputProps) => {
   };
 
   return (
-    <View>
-      <TouchableOpacity onPress={getImage}>
-        <View style={styles.addImageButton}>
-          <MaterialCommunityIcons size={50} name='camera' color={colors.medium} />
-        </View>
-      </TouchableOpacity>
-      {imageUri && (
-        <Image
-          source={{ uri: imageUri }}
-          style={{ width: 100, height: 100 }}
-          resizeMode='contain'
-        />
+    <View style={styles.container}>
+      {imageUri ? (
+        <Image source={{ uri: imageUri }} style={{ width: 100, height: 100 }} resizeMode='cover' />
+      ) : (
+        <TouchableOpacity onPress={getImage}>
+          <View style={styles.addImageButton}>
+            <MaterialCommunityIcons size={50} name='camera' color={colors.medium} />
+          </View>
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -54,12 +51,17 @@ const AppImageInput = ({ imageUri, onChangeImage }: AppImageInputProps) => {
 export default AppImageInput;
 
 const styles = StyleSheet.create({
-  addImageButton: {
+  container: {
     height: 100,
     width: 100,
-    borderRadius: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  addImageButton: {
     backgroundColor: colors.light,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
+    height: '100%',
   },
 });
