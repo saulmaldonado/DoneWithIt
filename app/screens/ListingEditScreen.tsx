@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
-import { AppForm, AppFormField, SubmitButton } from '../components/forms';
+import { AppForm, AppFormField, SubmitButton, AppPriceField } from '../components/forms';
 import AppFormPicker from '../components/forms/AppFormPicker';
 import * as yup from 'yup';
 
@@ -14,7 +14,6 @@ const categories = [
 const validationSchema = yup.object().shape({
   title: yup.string().required().min(1).label('Title'),
   description: yup.string().optional().label('Description'),
-  price: yup.number().min(1).max(10000).label('Price'),
 });
 
 const initialValues = { title: '', price: 0, category: undefined, description: '' };
@@ -28,7 +27,8 @@ const ListingEditScreen = () => {
         validationSchema={validationSchema}
       >
         <AppFormField name='title' placeholder='Title' autoCorrect={false} maxLength={255} />
-        <AppFormField name='price' placeholder='Price' maxLength={8} keyboardType='number-pad' />
+        <AppPriceField name='price' />
+
         <AppFormPicker name='category' items={categories} placeholder='Category' />
         <AppFormField
           name='description'

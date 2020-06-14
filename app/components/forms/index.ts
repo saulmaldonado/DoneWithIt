@@ -6,3 +6,4 @@ export { default as AppConfirmPasswordConfirmationFields } from './AppPasswordCo
 export { default as AppNameField } from './AppNameField';
 export { default as AppEmailField } from './AppEmailField';
 export { default as AppPasswordField } from './AppPasswordField';
+export { default as AppPriceField } from './AppPriceField';
