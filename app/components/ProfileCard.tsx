@@ -5,7 +5,6 @@ import {
   View,
   Image,
   TouchableHighlight,
-  ImageComponent,
   StyleProp,
   ViewStyle,
 } from 'react-native';
@@ -13,6 +12,7 @@ import fonts from '../config/fonts';
 import colors from '../config/colors';
 import 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const ProfileCard = ({
   profileIcon,
@@ -21,6 +21,7 @@ const ProfileCard = ({
   IconComponent,
   onPress,
   renderRightActions,
+  showChevron = true,
   style,
 }: ProfileCardProps) => {
   return (
@@ -33,6 +34,14 @@ const ProfileCard = ({
             <Text style={styles.name}>{title}</Text>
             {subTitle && <Text style={styles.listings}>{subTitle}</Text>}
           </View>
+
+          {showChevron && (
+            <MaterialCommunityIcons
+              name='chevron-right'
+              size={30}
+              style={{ position: 'absolute', right: 20 }}
+            />
+          )}
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -45,6 +54,7 @@ const styles = StyleSheet.create({
   profileCard: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     padding: 15,
     backgroundColor: colors.white,
   },
@@ -75,5 +85,6 @@ interface ProfileCardProps {
   IconComponent?: JSX.Element;
   onPress?: () => void;
   renderRightActions?: () => ReactNode;
+  showChevron?: boolean;
   style?: StyleProp<ViewStyle>;
 }
