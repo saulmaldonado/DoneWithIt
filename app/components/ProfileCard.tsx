@@ -31,17 +31,17 @@ const ProfileCard = ({
           {IconComponent}
           {profileIcon && <Image source={profileIcon} style={styles.profileIcon} />}
           <View style={styles.profileText}>
-            <Text style={styles.name}>{title}</Text>
-            {subTitle && <Text style={styles.listings}>{subTitle}</Text>}
+            <Text style={styles.name} numberOfLines={1}>
+              {title}
+            </Text>
+            {subTitle && (
+              <Text numberOfLines={2} style={styles.listings}>
+                {subTitle}
+              </Text>
+            )}
           </View>
 
-          {showChevron && (
-            <MaterialCommunityIcons
-              name='chevron-right'
-              size={30}
-              style={{ position: 'absolute', right: 20 }}
-            />
-          )}
+          {showChevron && <MaterialCommunityIcons name='chevron-right' size={30} />}
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   profileText: {
     marginLeft: 10,
     justifyContent: 'center',
+
+    flex: 1,
   },
   name: {
     fontSize: 13,

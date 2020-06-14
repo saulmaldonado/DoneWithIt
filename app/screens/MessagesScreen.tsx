@@ -8,14 +8,18 @@ import ListActionDeleteAction from '../components/ListActionDeleteAction';
 const initialMessages = [
   {
     id: 1,
-    title: 'T1',
-    description: 'D1',
+    title:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
     image: require('../assets/mosh.jpg'),
   },
   {
     id: 2,
-    title: 'T2',
-    description: 'D2',
+    title:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
     image: require('../assets/mosh.jpg'),
   },
 ];
