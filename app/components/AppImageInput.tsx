@@ -28,7 +28,6 @@ const AppImageInput = ({ imageUri, onChangeImage }: AppImageInputProps) => {
         onChangeImage(result.uri);
       }
     } catch (error) {
-      console.error(error);
       return;
     }
   };

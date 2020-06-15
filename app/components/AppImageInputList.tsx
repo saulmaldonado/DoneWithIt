@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AppImageInput from './AppImageInput';
-import App from '../../App';
 import { useFormikContext, FormikTouched, FormikErrors, FormikContextType } from 'formik';
 import { FormSchema } from './forms/AppForm';
-import * as yup from 'yup';
 import { AppErrorMessage } from './forms';
 
 type AppImageInputListProps = {
@@ -26,7 +24,6 @@ const AppImageInputList = ({
 }: AppImageInputListProps) => {
   const {
     setFieldValue,
-    setFieldTouched,
     errors,
     touched,
     values,
@@ -42,7 +39,17 @@ const AppImageInputList = ({
       >
         <View style={styles.list}>
           {imageUris.map((imageUri, index) => (
-            <TouchableOpacity onPress={() => onRemoveImage(index)} key={index} style={styles.image}>
+            <TouchableOpacity
+              onPress={() => {
+                setFieldValue(
+                  name,
+                  values.image.filter((uri: string, i: number) => index !== i)
+                );
+                onRemoveImage(index);
+              }}
+              key={index}
+              style={styles.image}
+            >
               <AppImageInput
                 imageUri={imageUri}
                 onChangeImage={(imageUri) => {
