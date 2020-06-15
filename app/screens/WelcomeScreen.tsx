@@ -1,10 +1,18 @@
 import React from 'react';
 import { ImageBackground, View, StyleSheet, Image, Text } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+import { RootStackParamsList } from '../navigation/AuthNavigator';
 import AppButton from '../components/AppButton';
 import colors from '../config/colors';
 
-const WelcomeScreen = () => {
+type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Welcome'>;
+
+type WelcomeScreenProps = {
+  navigation: WelcomeScreenNavigationProp;
+};
+
+const WelcomeScreen = ({ navigation }: WelcomeScreenProps) => {
   const backgroundImage = require('../assets/background.jpg');
   const logo = require('../assets/logo-red.png');
 
@@ -15,8 +23,16 @@ const WelcomeScreen = () => {
         <Text style={styles.text}>Sell What You Don't Need</Text>
       </View>
       <View style={styles.buttons}>
-        <AppButton color={colors.primary} title='login' />
-        <AppButton color={colors.secondary} title='register' />
+        <AppButton
+          color={colors.primary}
+          title='login'
+          onPress={() => navigation.navigate('Login')}
+        />
+        <AppButton
+          color={colors.secondary}
+          title='register'
+          onPress={() => navigation.navigate('Register')}
+        />
       </View>
     </ImageBackground>
   );

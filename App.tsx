@@ -17,29 +17,16 @@ import AppFormPicker from './app/components/forms/AppFormPicker';
 import ListingEditScreen from './app/screens/ListingEditScreen';
 import AppImageInput from './app/components/AppImageInput';
 import AppImageInputList from './app/components/AppImageInputList';
+import AuthNavigator from './app/navigation/AuthNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <WelcomeScreen /> */}
-      {/* <ViewImageScreen /> */}
-      {/* <ListingDetails
-        image={require('./app/assets/jacket.jpg')}
-        title='Red jacket for sale'
-        subTitle='$100'
-      /> */}
-      {/* <MessagesScreen /> */}
-      {/* <MyAccountScreen /> */}
-      {/* <ListingsScreen /> */}
-      {/* <LoginScreen /> */}
-      {/* <RegisterScreen /> */}
-      {/* <ListingsScreen /> */}
-      {/* <ListingEditScreen /> */}
-      <ListingEditScreen />
-
-      {/* <AppImageInput imageUri={image} onChangeImage={(image) => setImage(image)} /> */}
-      {/* <MessagesScreen /> */}
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <AuthNavigator />
+      </View>
+    </NavigationContainer>
   );
 }
 

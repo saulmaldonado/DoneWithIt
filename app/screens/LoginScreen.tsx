@@ -3,8 +3,15 @@ import { StyleSheet, Image } from 'react-native';
 import Screen from '../components/Screen';
 import { SubmitButton, AppForm, AppEmailField } from '../components/forms';
 import AppPasswordField from '../components/forms/AppPasswordField';
+import { RootStackParamsList } from '../navigation/AuthNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const LoginScreen = () => {
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Login'>;
+type LoginScreenProps = {
+  navigation: LoginScreenNavigationProp;
+};
+
+const LoginScreen = ({ navigation }: LoginScreenProps) => {
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />

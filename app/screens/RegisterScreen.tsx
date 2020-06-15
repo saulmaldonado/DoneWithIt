@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../navigation/AuthNavigator';
+
 import Screen from '../components/Screen';
 import {
   AppForm,
   SubmitButton,
   AppConfirmPasswordConfirmationFields,
   AppNameField,
-  AppFormField,
 } from '../components/forms';
 import AppEmailField from '../components/forms/AppEmailField';
-import * as yup from 'yup';
-import AppImageInputList from '../components/AppImageInputList';
 
 const initialValues = {
   name: '',
@@ -19,7 +19,12 @@ const initialValues = {
   reenterPassword: '',
 };
 
-const RegisterScreen = () => {
+type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Welcome'>;
+type RegisterScreenProps = {
+  navigation: RegisterScreenNavigationProp;
+};
+
+const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
   return (
     <Screen style={styles.container}>
       <AppForm initialValues={initialValues} onSubmit={(values) => console.log(values)}>

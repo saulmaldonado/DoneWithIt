@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 import validations from './validationSchemas';
-import { FormikConfig } from 'formik';
-import { FormSchema } from './AppForm';
 
 export default (children: JSX.Element[], validationSchema?: yup.ObjectSchema<any>) => {
   const existingSchema = validationSchema?.fields;
@@ -11,13 +9,13 @@ export default (children: JSX.Element[], validationSchema?: yup.ObjectSchema<any
     if (!fieldName || !Object.keys(validations).includes(typeName)) return;
 
     /* Input element combos that need more than one schema (such as confirming passwords)
-     will need to have an array of names for their fields as the name props */
+     will need to have an array of names for their fields as the name prop */
 
-    if (fieldName instanceof Array) {
+    if (Array.isArray(fieldName)) {
       fieldName.forEach((fieldName, i) => {
-        if (newValidationSchema[fieldName] || existingSchema?.[fieldName])
+        if (newValidationSchema[fieldName] || existingSchema?.[fieldName]) {
           throw new Error(`name: ${fieldName}, already exists in the form schema`);
-
+        }
         newValidationSchema[fieldName] = (validations[typeName] as yup.Schema<any>[])[i];
       });
     } else {

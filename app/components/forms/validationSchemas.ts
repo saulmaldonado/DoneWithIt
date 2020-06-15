@@ -18,7 +18,7 @@ const validations: validationsType = {
 };
 
 type validationsType = {
-  [type: string]: yup.Schema<any> | yup.Schema<any>[];
+  [type: string]: yup.Schema<any>[] | yup.Schema<any>;
 };
 
 export default validations;
