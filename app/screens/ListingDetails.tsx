@@ -1,11 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Card from '../components/Card';
 import ProfileCard from '../components/ProfileCard';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
+import { FeedNavigatorParamsList } from '../navigation/FeedNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
-const ListingDetails = ({ image, title, subTitle }: ListingDetailsProps) => {
+type ListingDetailsNavigationProp = StackNavigationProp<FeedNavigatorParamsList, 'ListingDetails'>;
+
+type ListingDetailsRouteProp = RouteProp<FeedNavigatorParamsList, 'ListingDetails'>;
+
+type ListingDetailsProps = {
+  navigation: ListingDetailsNavigationProp;
+  route: ListingDetailsRouteProp;
+};
+
+const ListingDetails = ({
+  route: {
+    params: { image, title, price },
+  },
+}: ListingDetailsProps) => {
   const profileImage = require('../assets/mosh.jpg');
   const profileName = 'Mosh Hamedani';
 
@@ -14,7 +29,7 @@ const ListingDetails = ({ image, title, subTitle }: ListingDetailsProps) => {
       <Image source={image} style={styles.image} resizeMode={'cover'} />
       <View style={styles.itemInfo}>
         <Text style={styles.text}>{title}</Text>
-        <Text style={{ ...styles.text, color: colors.secondary }}>{subTitle}</Text>
+        <Text style={{ ...styles.text, color: 'green' }}>${price}</Text>
       </View>
       <ProfileCard
         profileIcon={profileImage}
@@ -49,9 +64,3 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary,
   },
 });
-
-interface ListingDetailsProps {
-  image: any;
-  title: string;
-  subTitle: string;
-}

@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 15,
-
     fontFamily: fonts.primary,
     color: colors.secondary,
   },

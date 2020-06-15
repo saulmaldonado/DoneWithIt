@@ -5,8 +5,6 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
-import FeedNavigator from './FeedNavigator';
-
 export type RootStackParamsList = {
   Welcome: undefined;
   Login: undefined;

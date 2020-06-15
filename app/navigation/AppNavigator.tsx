@@ -5,7 +5,13 @@ import ListingEditScreen from '../screens/ListingEditScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
 import FeedNavigator from './FeedNavigator';
 
-const Tab = createBottomTabNavigator();
+export type AppNavigatorParamsList = {
+  Feed: undefined;
+  ListingEdit: undefined;
+  Account: undefined;
+};
+
+const Tab = createBottomTabNavigator<AppNavigatorParamsList>();
 
 const AppNavigator = () => {
   return (
