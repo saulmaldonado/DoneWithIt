@@ -6,6 +6,7 @@ const validations: validationsType = {
   AppPasswordField: yup.string().required().min(4).label('Password'),
   AppFormPicker: yup.mixed().defined().label('Selector'),
   AppPriceField: yup.number().required().min(1).max(10000).label('Price'),
+  AppFormImagePicker: yup.array().min(1, 'Must upload at least one image').label('Images'),
   AppPasswordConfirmationFields: [
     yup.string().required().min(4).label('Password'),
     yup

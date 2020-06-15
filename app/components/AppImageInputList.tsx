@@ -43,7 +43,7 @@ const AppImageInputList = ({
               onPress={() => {
                 setFieldValue(
                   name,
-                  values.image.filter((uri: string, i: number) => index !== i)
+                  values[name].filter((uri: string, i: number) => index !== i)
                 );
                 onRemoveImage(index);
               }}
@@ -61,7 +61,7 @@ const AppImageInputList = ({
           <AppImageInput
             imageUri={undefined}
             onChangeImage={(imageUri) => {
-              setFieldValue(name, [...values.image, imageUri]);
+              setFieldValue(name, [...values[name], imageUri]);
               onAddImage(imageUri);
             }}
           />

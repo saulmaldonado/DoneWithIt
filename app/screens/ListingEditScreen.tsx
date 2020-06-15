@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import colors from '../config/colors';
 import AppImageInputList from '../components/AppImageInputList';
 import useLocation from '../components/hooks/useLocation';
+import AppFormImagePicker from '../components/forms/AppFormImagePicker';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -21,7 +22,6 @@ const categories = [
 const validationSchema = yup.object().shape({
   title: yup.string().required().min(1).label('Title'),
   description: yup.string().optional().label('Description'),
-  image: yup.array().min(1, 'Must upload at least one image').label('Images'),
 });
 
 const initialValues = {
@@ -33,8 +33,6 @@ const initialValues = {
 };
 
 const ListingEditScreen = () => {
-  const [imageUris, setImageUris] = useState<string[]>([]);
-
   const location = useLocation();
 
   return (
@@ -44,15 +42,10 @@ const ListingEditScreen = () => {
         onSubmit={(values) => console.log(values, location)}
         validationSchema={validationSchema}
       >
-        <AppImageInputList
-          name='image'
-          imageUris={imageUris}
-          onAddImage={(imageUri) => {
-            setImageUris([...imageUris, imageUri]);
-          }}
-          onRemoveImage={(index) => setImageUris(imageUris.filter((uri, i) => i !== index))}
-        />
+        <AppFormImagePicker name='image' />
+
         <AppFormField name='title' placeholder='Title' autoCorrect={false} maxLength={255} />
+
         <AppPriceField name='price' />
 
         <AppFormPicker
@@ -62,6 +55,7 @@ const ListingEditScreen = () => {
           pickerType='icon'
           numColumns={4}
         />
+
         <AppFormField
           name='description'
           placeholder='Description'
