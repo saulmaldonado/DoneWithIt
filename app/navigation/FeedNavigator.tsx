@@ -1,10 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { AppNavigatorParamsList } from '../navigation/AppNavigator';
 
 import ListingsScreen from '../screens/ListingsScreen';
 import ListingDetails from '../screens/ListingDetails';
+import { Platform } from 'react-native';
 
 export type FeedNavigatorParamsList = {
   Listings: undefined;
@@ -15,12 +14,15 @@ const Stack = createStackNavigator<FeedNavigatorParamsList>();
 
 const FeedNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator mode='modal'>
       <Stack.Screen name='Listings' component={ListingsScreen} options={{ headerShown: false }} />
       <Stack.Screen
         name='ListingDetails'
         component={ListingDetails}
-        options={{ headerShown: false }}
+        options={({ route }) => ({
+          headerShown: Platform.OS === 'android',
+          title: route.params.title,
+        })}
       />
     </Stack.Navigator>
   );
