@@ -19,10 +19,11 @@ import AppImageInput from './app/components/AppImageInput';
 import AppImageInputList from './app/components/AppImageInputList';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import navigationTheme from './app/navigation/navigationTheme';
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <View style={styles.container}>
         <AuthNavigator />
       </View>
