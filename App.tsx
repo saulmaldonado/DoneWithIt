@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Platform, StatusBar } from 'react-native';
+import { View, StyleSheet, Platform, StatusBar, Text } from 'react-native';
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ListingDetails from './app/screens/ListingDetails';
@@ -16,9 +16,10 @@ import { AppForm, SubmitButton } from './app/components/forms';
 import AppFormPicker from './app/components/forms/AppFormPicker';
 import ListingEditScreen from './app/screens/ListingEditScreen';
 import AppImageInput from './app/components/AppImageInput';
+import AppImageInputList from './app/components/AppImageInputList';
 
 export default function App() {
-  const [image, setImage] = useState<string | undefined>();
+  const [imageUris, setImageUris] = useState<string[]>([]);
 
   return (
     <View style={styles.container}>
@@ -36,7 +37,12 @@ export default function App() {
       {/* <RegisterScreen /> */}
       {/* <ListingsScreen /> */}
       {/* <ListingEditScreen /> */}
-      <AppImageInput imageUri={image} onChangeImage={(uri: string | undefined) => setImage(uri)} />
+      <AppImageInputList
+        imageUris={imageUris}
+        onAddImage={(imageUri) => setImageUris([...imageUris, imageUri])}
+        onRemoveImage={(index) => setImageUris(imageUris.filter((uri, i) => index !== i))}
+      />
+      {/* <AppImageInput imageUri={image} onChangeImage={(image) => setImage(image)} /> */}
       {/* <MessagesScreen /> */}
     </View>
   );
@@ -45,7 +51,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
