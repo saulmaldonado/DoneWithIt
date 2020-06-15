@@ -20,21 +20,15 @@ import AppImageInputList from './app/components/AppImageInputList';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import navigationTheme from './app/navigation/navigationTheme';
+import AppNavigator from './app/navigation/AppNavigator';
 
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <View style={styles.container}>
-        <AuthNavigator />
-      </View>
+      {/* <AuthNavigator /> */}
+      <AppNavigator />
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
