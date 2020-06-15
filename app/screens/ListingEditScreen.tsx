@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
 import { AppForm, AppFormField, SubmitButton, AppPriceField } from '../components/forms';
@@ -6,7 +6,7 @@ import AppFormPicker from '../components/forms/AppFormPicker';
 import * as yup from 'yup';
 import colors from '../config/colors';
 import AppImageInputList from '../components/AppImageInputList';
-import * as Location from 'expo-location';
+import useLocation from '../components/hooks/useLocation';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -34,26 +34,8 @@ const initialValues = {
 
 const ListingEditScreen = () => {
   const [imageUris, setImageUris] = useState<string[]>([]);
-  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
 
-  const getLocation = async () => {
-    const { granted } = await Location.requestPermissionsAsync();
-    if (granted) {
-      try {
-        const {
-          coords: { latitude, longitude },
-        } = await Location.getCurrentPositionAsync();
-
-        setLocation({ latitude, longitude });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getLocation();
-  }, []);
+  const location = useLocation();
 
   return (
     <Screen style={{ padding: 10 }}>
