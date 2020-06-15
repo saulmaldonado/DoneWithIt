@@ -19,8 +19,6 @@ import AppImageInput from './app/components/AppImageInput';
 import AppImageInputList from './app/components/AppImageInputList';
 
 export default function App() {
-  const [imageUris, setImageUris] = useState<string[]>([]);
-
   return (
     <View style={styles.container}>
       {/* <WelcomeScreen /> */}
@@ -37,11 +35,8 @@ export default function App() {
       {/* <RegisterScreen /> */}
       {/* <ListingsScreen /> */}
       {/* <ListingEditScreen /> */}
-      <AppImageInputList
-        imageUris={imageUris}
-        onAddImage={(imageUri) => setImageUris([...imageUris, imageUri])}
-        onRemoveImage={(index) => setImageUris(imageUris.filter((uri, i) => index !== i))}
-      />
+      <ListingEditScreen />
+
       {/* <AppImageInput imageUri={image} onChangeImage={(image) => setImage(image)} /> */}
       {/* <MessagesScreen /> */}
     </View>

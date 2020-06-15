@@ -6,9 +6,11 @@ import {
   SubmitButton,
   AppConfirmPasswordConfirmationFields,
   AppNameField,
+  AppFormField,
 } from '../components/forms';
 import AppEmailField from '../components/forms/AppEmailField';
 import * as yup from 'yup';
+import AppImageInputList from '../components/AppImageInputList';
 
 const initialValues = {
   name: '',

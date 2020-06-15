@@ -8,7 +8,7 @@ export default (children: JSX.Element[], validationSchema?: yup.ObjectSchema<any
   const newValidationSchema: { [name: string]: yup.Schema<any> } = {};
   children.forEach(({ type: { name: typeName }, props: { name: fieldName } }) => {
     // checks for a name prop, this will creating schemas for elements that don't need one
-    if (!fieldName || typeName === 'AppFormField') return;
+    if (!fieldName || !Object.keys(validations).includes(typeName)) return;
 
     /* Input element combos that need more than one schema (such as confirming passwords)
      will need to have an array of names for their fields as the name props */

@@ -2,14 +2,35 @@ import React, { useRef } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AppImageInput from './AppImageInput';
 import App from '../../App';
+import { useFormikContext, FormikTouched, FormikErrors, FormikContextType } from 'formik';
+import { FormSchema } from './forms/AppForm';
+import * as yup from 'yup';
+import { AppErrorMessage } from './forms';
 
 type AppImageInputListProps = {
+  name: string;
   imageUris: string[];
   onAddImage: (imageUri: string) => void;
   onRemoveImage: (index: number) => void;
 };
+type AppImageInputListUseFormikContext = {
+  touched: FormikTouched<{ [name: string]: boolean }>;
+  errors: FormikErrors<{ [name: string]: string }>;
+} & Pick<FormikContextType<FormSchema>, 'setFieldValue' | 'setFieldTouched' | 'values'>;
 
-const AppImageInputList = ({ imageUris, onAddImage, onRemoveImage }: AppImageInputListProps) => {
+const AppImageInputList = ({
+  name,
+  imageUris,
+  onAddImage,
+  onRemoveImage,
+}: AppImageInputListProps) => {
+  const {
+    setFieldValue,
+    setFieldTouched,
+    errors,
+    touched,
+    values,
+  }: AppImageInputListUseFormikContext = useFormikContext<FormSchema>();
   const scrollView = useRef<ScrollView | null>(null);
 
   return (
@@ -24,13 +45,22 @@ const AppImageInputList = ({ imageUris, onAddImage, onRemoveImage }: AppImageInp
             <TouchableOpacity onPress={() => onRemoveImage(index)} key={index} style={styles.image}>
               <AppImageInput
                 imageUri={imageUri}
-                onChangeImage={(imageUri) => onAddImage(imageUri)}
+                onChangeImage={(imageUri) => {
+                  onAddImage(imageUri);
+                }}
               />
             </TouchableOpacity>
           ))}
-          <AppImageInput imageUri={undefined} onChangeImage={(imageUri) => onAddImage(imageUri)} />
+          <AppImageInput
+            imageUri={undefined}
+            onChangeImage={(imageUri) => {
+              setFieldValue(name, [...values.image, imageUri]);
+              onAddImage(imageUri);
+            }}
+          />
         </View>
       </ScrollView>
+      <AppErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   );
 };
