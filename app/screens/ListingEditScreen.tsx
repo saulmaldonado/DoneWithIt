@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
 import { AppForm, AppFormField, SubmitButton, AppPriceField } from '../components/forms';
@@ -6,6 +6,7 @@ import AppFormPicker from '../components/forms/AppFormPicker';
 import * as yup from 'yup';
 import colors from '../config/colors';
 import AppImageInputList from '../components/AppImageInputList';
+import * as Location from 'expo-location';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -23,15 +24,42 @@ const validationSchema = yup.object().shape({
   image: yup.array().min(1, 'Must upload at least one image').label('Images'),
 });
 
-const initialValues = { title: '', price: 0, category: undefined, description: '', image: [] };
+const initialValues = {
+  title: '',
+  price: 0,
+  category: undefined,
+  description: '',
+  image: [],
+};
 
 const ListingEditScreen = () => {
   const [imageUris, setImageUris] = useState<string[]>([]);
+  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+
+  const getLocation = async () => {
+    const { granted } = await Location.requestPermissionsAsync();
+    if (granted) {
+      try {
+        const {
+          coords: { latitude, longitude },
+        } = await Location.getCurrentPositionAsync();
+
+        setLocation({ latitude, longitude });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <Screen style={{ padding: 10 }}>
       <AppForm
         initialValues={initialValues}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(values, location)}
         validationSchema={validationSchema}
       >
         <AppImageInputList
