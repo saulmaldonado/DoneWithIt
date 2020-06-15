@@ -1,19 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 
-const Card = ({ children: title, subTitle, image }: CardProps) => {
+const Card = ({ children: title, subTitle, image, onPress }: CardProps) => {
   return (
-    <View style={styles.card}>
-      <Image source={image} style={styles.image} resizeMode={'cover'} />
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.card}>
+        <Image source={image} style={styles.image} resizeMode={'cover'} />
 
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>{subTitle}</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subTitle}>{subTitle}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -54,4 +56,5 @@ interface CardProps {
   children: string;
   subTitle: string;
   image: any;
+  onPress: () => void;
 }
