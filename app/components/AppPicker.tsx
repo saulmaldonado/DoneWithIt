@@ -6,6 +6,7 @@ import fonts from '../config/fonts';
 import AppPickerModal from './AppPickerModal';
 import PickerItemIcon from './forms/PickerItemIcon';
 import PickerItem from './PickerItem';
+import { MaterialCommunityIconType } from '../config/icons';
 
 const AppPicker = ({
   icon,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
 });
 
 type AppPickerProps = {
-  icon?: string;
+  icon?: MaterialCommunityIconType;
   placeholder: string;
   items: any[];
   selectedItem: any;

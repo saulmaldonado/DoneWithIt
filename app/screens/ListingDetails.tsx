@@ -1,15 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
-import colors from '../config/colors';
 import fonts from '../config/fonts';
 import { FeedNavigatorParamsList } from '../navigation/FeedNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import { routes } from '../navigation/routes';
 
-type ListingDetailsNavigationProp = StackNavigationProp<FeedNavigatorParamsList, 'ListingDetails'>;
+type ListingDetailsNavigationProp = StackNavigationProp<
+  FeedNavigatorParamsList,
+  routes.LISTING_DETAILS
+>;
 
-type ListingDetailsRouteProp = RouteProp<FeedNavigatorParamsList, 'ListingDetails'>;
+type ListingDetailsRouteProp = RouteProp<FeedNavigatorParamsList, routes.LISTING_DETAILS>;
 
 type ListingDetailsProps = {
   navigation: ListingDetailsNavigationProp;

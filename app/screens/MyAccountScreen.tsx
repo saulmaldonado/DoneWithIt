@@ -7,6 +7,7 @@ import ListItemSeparator from '../components/ListItemSeparator';
 import colors from '../config/colors';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AccountNavigatorParamsList } from '../navigation/AccountNavigator';
+import { routes } from '../navigation/routes';
 
 const profile = {
   image: require('../assets/mosh.jpg'),
@@ -26,17 +27,20 @@ const pages: User[] = [
     title: 'My Listings',
     iconName: 'format-list-bulleted',
     iconColor: colors.primary,
-    screen: 'Account',
+    screen: routes.ACCOUNT,
   },
   {
     title: 'My Messages',
     iconName: 'email',
     iconColor: colors.secondary,
-    screen: 'Messages',
+    screen: routes.MESSAGES,
   },
 ];
 
-type MyAccountScreenNavigationProp = StackNavigationProp<AccountNavigatorParamsList, 'Account'>;
+type MyAccountScreenNavigationProp = StackNavigationProp<
+  AccountNavigatorParamsList,
+  routes.ACCOUNT
+>;
 type MyAccountScreenProps = {
   navigation: MyAccountScreenNavigationProp;
 };

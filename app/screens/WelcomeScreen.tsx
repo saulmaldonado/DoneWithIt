@@ -5,8 +5,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../navigation/AuthNavigator';
 import AppButton from '../components/AppButton';
 import colors from '../config/colors';
+import { routes } from '../navigation/routes';
 
-type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Welcome'>;
+type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamsList, routes.WELCOME>;
 
 type WelcomeScreenProps = {
   navigation: WelcomeScreenNavigationProp;
@@ -26,12 +27,12 @@ const WelcomeScreen = ({ navigation }: WelcomeScreenProps) => {
         <AppButton
           color={colors.primary}
           title='login'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate(routes.LOGIN)}
         />
         <AppButton
           color={colors.secondary}
           title='register'
-          onPress={() => navigation.navigate('Register')}
+          onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </View>
     </ImageBackground>

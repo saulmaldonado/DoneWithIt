@@ -11,6 +11,7 @@ import {
   AppNameField,
 } from '../components/forms';
 import AppEmailField from '../components/forms/AppEmailField';
+import { routes } from '../navigation/routes';
 
 const initialValues = {
   name: '',
@@ -19,7 +20,7 @@ const initialValues = {
   reenterPassword: '',
 };
 
-type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Welcome'>;
+type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamsList, routes.WELCOME>;
 type RegisterScreenProps = {
   navigation: RegisterScreenNavigationProp;
 };

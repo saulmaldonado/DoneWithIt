@@ -5,8 +5,9 @@ import { SubmitButton, AppForm, AppEmailField } from '../components/forms';
 import AppPasswordField from '../components/forms/AppPasswordField';
 import { RootStackParamsList } from '../navigation/AuthNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { routes } from '../navigation/routes';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Login'>;
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamsList, routes.LOGIN>;
 type LoginScreenProps = {
   navigation: LoginScreenNavigationProp;
 };

@@ -4,11 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import { routes } from './routes';
 
 export type RootStackParamsList = {
-  Welcome: undefined;
-  Login: undefined;
-  Register: undefined;
+  [routes.WELCOME]: undefined;
+  [routes.LOGIN]: undefined;
+  [routes.REGISTER]: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamsList>();
@@ -16,9 +17,13 @@ const Stack = createStackNavigator<RootStackParamsList>();
 const AuthNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Welcome' component={WelcomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name='Login' component={LoginScreen} />
-      <Stack.Screen name='Register' component={RegisterScreen} />
+      <Stack.Screen
+        name={routes.WELCOME}
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
+      <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
     </Stack.Navigator>
   );
 };
