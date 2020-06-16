@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ListingEditScreen from '../screens/ListingEditScreen';
 import FeedNavigator from './FeedNavigator';
@@ -16,7 +17,11 @@ const Tab = createBottomTabNavigator<AppNavigatorParamsList>();
 const AppNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name='Feed' component={FeedNavigator}></Tab.Screen>
+      <Tab.Screen
+        name='Feed'
+        component={FeedNavigator}
+        options={{ tabBarIcon: () => <MaterialCommunityIcons name='account-check-outline' /> }}
+      ></Tab.Screen>
       <Tab.Screen name='ListingEdit' component={ListingEditScreen}></Tab.Screen>
       <Tab.Screen name='Account' component={AccountNavigator}></Tab.Screen>
     </Tab.Navigator>
