@@ -2,13 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import ListingEditScreen from '../screens/ListingEditScreen';
-import MyAccountScreen from '../screens/MyAccountScreen';
 import FeedNavigator from './FeedNavigator';
+import AccountNavigator from './AccountNavigator';
 
 export type AppNavigatorParamsList = {
   Feed: undefined;
   ListingEdit: undefined;
-  Account: undefined;
+  Account: { image: number; title: string; subTitle: string };
 };
 
 const Tab = createBottomTabNavigator<AppNavigatorParamsList>();
@@ -18,7 +18,7 @@ const AppNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name='Feed' component={FeedNavigator}></Tab.Screen>
       <Tab.Screen name='ListingEdit' component={ListingEditScreen}></Tab.Screen>
-      <Tab.Screen name='Account' component={MyAccountScreen}></Tab.Screen>
+      <Tab.Screen name='Account' component={AccountNavigator}></Tab.Screen>
     </Tab.Navigator>
   );
 };
