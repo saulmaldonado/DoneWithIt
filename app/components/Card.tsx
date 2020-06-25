@@ -8,7 +8,7 @@ const Card = ({ children: title, subTitle, image, onPress }: CardProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <Image source={image} style={styles.image} resizeMode={'cover'} />
+        <Image source={{ uri: image }} style={styles.image} resizeMode={'cover'} />
 
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
 interface CardProps {
   children: string;
   subTitle: string;
-  image: any;
+  image: string;
   onPress: () => void;
 }
