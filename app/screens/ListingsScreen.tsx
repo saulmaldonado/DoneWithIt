@@ -8,28 +8,14 @@ import colors from '../config/colors';
 import { routes } from '../navigation/routes';
 import listingsApi from '../api/listings';
 import AppButton from '../components/AppButton';
+import useApi from '../components/hooks/useApi';
 
 const ListingsScreen = ({ navigation }: any) => {
-  const [listings, setListings] = useState<any>([]);
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState(false);
+  const { data: listings, error, loading, request: loadListings } = useApi(listingsApi.getListings);
 
   useEffect(() => {
     loadListings();
   }, []);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
-
-    if (!response.ok) {
-      return setError(true);
-    }
-
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <Screen style={{ backgroundColor: colors.light }}>
