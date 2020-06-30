@@ -2,6 +2,9 @@ import client from './client';
 import { Listing } from './schemas/Listing';
 
 const endpoint = '/listings';
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImV4cCI6MTc2NTc3ODQwMDAwMH0._esbrd7d82bOs3dVmQm4weuNDOwgW2YpWSeE9WhM0Fw';
+const headers = { Authorization: `Bearer ${token}` };
 
 const getListings = () => client.get(endpoint);
 // const postListing = (listing: FormData) => client.post(endpoint, listing);
@@ -55,7 +58,7 @@ const postListing = async ({
 
   // testing token
 
-  client.post(endpoint, listingData);
+  client.post(endpoint, listingData, { headers });
 };
 
 export default {
