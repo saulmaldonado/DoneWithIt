@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { PickerItemProps } from '../PickerItem';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIconType } from '../../config/icons';
 
 type PickerItemIconProps = {
   item: {
     icon?: {
-      name: string;
+      name: MaterialCommunityIconType;
       color: string;
     };
   };

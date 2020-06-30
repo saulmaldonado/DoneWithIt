@@ -4,6 +4,7 @@ import AppPicker from '../AppPicker';
 import { useFormikContext, FormikTouched, FormikErrors, FormikContextType } from 'formik';
 import { FormSchema } from './AppForm';
 import AppErrorMessage from './AppErrorMessage';
+import { MaterialCommunityIconType } from '../../config/icons';
 
 const AppFormPicker = ({
   name,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({});
 type AppFormPickerProps = {
   name: string;
   items: { label: string; value: any }[];
-  icon?: string;
+  icon?: MaterialCommunityIconType;
   placeholder: string;
   numColumns?: number;
   pickerType?: 'icon' | null;
