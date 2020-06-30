@@ -9,6 +9,8 @@ import useLocation from '../components/hooks/useLocation';
 import AppFormImagePicker from '../components/forms/AppFormImagePicker';
 import { Listing } from '../api/schemas/Listing';
 import listingsApi from '../api/listings';
+import listings from '../api/listings';
+import { FormSchema } from '../components/forms/AppForm';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -33,6 +35,16 @@ const initialValues = {
   images: [],
 };
 
+const handleUploadProgress = ({ loaded, total }: any) => console.log((loaded / total) * 100 + '%');
+
+const handleSubmit = async (listing: Listing, onUpload: any) => {
+  const result = await listingsApi.postListing(listing, onUpload);
+  if (!result.ok) {
+    return alert('Could not save listing.');
+  } else {
+    alert('Success!');
+  }
+};
 const ListingEditScreen = () => {
   const location = useLocation();
 
@@ -42,7 +54,7 @@ const ListingEditScreen = () => {
         initialValues={initialValues}
         onSubmit={(values) => {
           try {
-            listingsApi.postListing({ ...values, location } as Listing);
+            handleSubmit({ ...values, location } as Listing, handleUploadProgress);
           } catch (error) {
             console.log(error);
           }

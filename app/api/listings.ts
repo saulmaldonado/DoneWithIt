@@ -1,5 +1,6 @@
 import client from './client';
 import { Listing } from './schemas/Listing';
+import { ApiResponse } from 'apisauce';
 
 const endpoint = '/listings';
 const token =
@@ -9,14 +10,10 @@ const headers = { Authorization: `Bearer ${token}` };
 const getListings = () => client.get(endpoint);
 // const postListing = (listing: FormData) => client.post(endpoint, listing);
 
-const postListing = async ({
-  title,
-  price,
-  categoryId,
-  location,
-  description,
-  images,
-}: Listing): Promise<void> => {
+const postListing = async (
+  { title, price, categoryId, location, description, images }: Listing,
+  onUpload: any
+): Promise<ApiResponse<any>> => {
   const listingData = new FormData();
   const googleHQ = { longitude: '37.4220', latitude: '122.0841' };
 
@@ -58,7 +55,11 @@ const postListing = async ({
 
   // testing token
 
-  client.post(endpoint, listingData, { headers });
+  return client.post(endpoint, listingData, {
+    headers,
+    // onUploadProgress: ({ loaded, total }) => console.log((loaded / total) * 100 + '%'),
+    onUploadProgress: onUpload,
+  });
 };
 
 export default {
