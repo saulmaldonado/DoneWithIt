@@ -7,10 +7,10 @@ import * as yup from 'yup';
 import colors from '../config/colors';
 import useLocation from '../components/hooks/useLocation';
 import AppFormImagePicker from '../components/forms/AppFormImagePicker';
-import { Listing } from '../api/schemas/Listing';
+import { Listing, EditListingForm } from '../api/schemas/Listing';
 import listingsApi from '../api/listings';
 import UploadScreen from './UploadScreen';
-import { FormikBag } from 'formik';
+import { FormikHelpers } from 'formik';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -27,7 +27,7 @@ const validationSchema = yup.object().shape({
   description: yup.string().optional().label('Description'),
 });
 
-const initialValues = {
+const initialValues: EditListingForm = {
   title: '',
   price: '',
   categoryId: undefined,
@@ -40,10 +40,15 @@ const ListingEditScreen = () => {
   const [uploadVisible, setUploadVisible] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
 
-  const handleUploadProgress = ({ loaded, total }: any) => setProgress((loaded / total) * 100);
+  const handleUploadProgress = ({ loaded, total }: ProgressEvent) =>
+    setProgress((loaded / total) * 100);
 
-  const handleSubmit = async (listing: Listing, onUpload: any, { resetForm }: any) => {
-    const result = await listingsApi.postListing(listing, onUpload);
+  const handleSubmit = async (
+    listing: EditListingForm,
+    onUpload: any,
+    { resetForm }: FormikHelpers<EditListingForm>
+  ) => {
+    const result = await listingsApi.postListing({ ...listing, location }, onUpload);
     if (!result.ok) {
       setUploadVisible(false);
       return alert('Could not save listing.');
@@ -58,17 +63,13 @@ const ListingEditScreen = () => {
         visible={uploadVisible}
         onFinish={() => setUploadVisible(false)}
       />
-      <AppForm
+      <AppForm<EditListingForm>
         initialValues={initialValues}
         onSubmit={async (values, formikHelpers) => {
           setProgress(0);
           setUploadVisible(true);
           try {
-            await handleSubmit(
-              { ...values, location } as Listing,
-              handleUploadProgress,
-              formikHelpers
-            );
+            await handleSubmit(values, handleUploadProgress, formikHelpers);
           } catch (error) {
             console.log(error);
             setUploadVisible(false);
@@ -82,7 +83,7 @@ const ListingEditScreen = () => {
 
         <AppPriceField name='price' />
 
-        <AppFormPicker
+        <AppFormPicker<EditListingForm>
           name='categoryId'
           items={categories}
           placeholder='Category'

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import AppPicker from '../AppPicker';
 import { useFormikContext, FormikTouched, FormikErrors, FormikContextType } from 'formik';
-import { FormSchema } from './AppForm';
 import AppErrorMessage from './AppErrorMessage';
 import { MaterialCommunityIconType } from '../../config/icons';
 
-const AppFormPicker = ({
+const AppFormPicker = <T extends { [name: string]: any }>({
   name,
   items,
   icon,
@@ -20,7 +19,7 @@ const AppFormPicker = ({
     touched,
     setFieldValue,
     values,
-  }: AppFormPickerUseFormikContext = useFormikContext<FormSchema>();
+  }: AppFormPickerUseFormikContext<T> = useFormikContext<T>();
 
   return (
     <>
@@ -55,10 +54,7 @@ type AppFormPickerProps = {
   pickerType?: 'icon' | null;
 };
 
-type AppFormPickerUseFormikContext = {
+type AppFormPickerUseFormikContext<T> = {
   touched: FormikTouched<{ [name: string]: boolean }>;
   errors: FormikErrors<{ [name: string]: string }>;
-} & Pick<
-  FormikContextType<FormSchema>,
-  'handleChange' | 'setFieldTouched' | 'setFieldValue' | 'values'
->;
+} & Pick<FormikContextType<T>, 'handleChange' | 'setFieldTouched' | 'setFieldValue' | 'values'>;

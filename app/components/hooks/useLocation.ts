@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Location as LocationType } from '../../api/schemas/listing';
 import * as Location from 'expo-location';
 
 export default () => {
-  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [location, setLocation] = useState<LocationType>(null);
 
   const getLocation = async () => {
     const { granted } = await Location.requestPermissionsAsync();

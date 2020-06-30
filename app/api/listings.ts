@@ -1,5 +1,5 @@
 import client from './client';
-import { Listing } from './schemas/Listing';
+import { Listing, EditListingForm, Location } from './schemas/Listing';
 import { ApiResponse } from 'apisauce';
 
 const endpoint = '/listings';
@@ -10,8 +10,17 @@ const headers = { Authorization: `Bearer ${token}` };
 const getListings = () => client.get(endpoint);
 // const postListing = (listing: FormData) => client.post(endpoint, listing);
 
+// ListingEditScreen type + Location
+type listingFormData = EditListingForm & { location: Location };
+
+type FormDataImage = {
+  uri: string;
+  type?: string;
+  name?: string;
+};
+
 const postListing = async (
-  { title, price, categoryId, location, description, images }: Listing,
+  { title, price, categoryId, location, description, images }: listingFormData,
   onUpload: any
 ): Promise<ApiResponse<any>> => {
   const listingData = new FormData();
@@ -19,8 +28,8 @@ const postListing = async (
 
   listingData.append('title', title);
   listingData.append('title', description);
-  listingData.append('price', price.toString());
-  listingData.append('categoryId', categoryId.value.toString());
+  listingData.append('price', price);
+  listingData.append('categoryId', categoryId?.value?.toString() ?? '');
   listingData.append('latitude', location?.latitude.toString() ?? googleHQ.latitude);
   listingData.append('longitude', location?.longitude.toString() ?? googleHQ.longitude);
 
@@ -29,11 +38,6 @@ const postListing = async (
    * properties are optional
    * https://github.com/facebook/react-native/blob/master/Libraries/Network/FormData.js
    */
-  type FormDataImage = {
-    uri: string;
-    type?: string;
-    name?: string;
-  };
 
   images.forEach((i) => {
     let name: string;
@@ -50,7 +54,7 @@ const postListing = async (
       type: 'image/jpeg',
       name: name,
     };
-    listingData.append('images', imageBlob as any);
+    listingData.append('images', (imageBlob as unknown) as Blob);
   });
 
   // testing token
