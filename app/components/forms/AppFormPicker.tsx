@@ -14,13 +14,12 @@ const AppFormPicker = ({
   numColumns = 1,
   pickerType = null,
 }: AppFormPickerProps) => {
-  const [selected, setSelected] = useState();
-
   const {
     errors,
     setFieldTouched,
     touched,
     setFieldValue,
+    values,
   }: AppFormPickerUseFormikContext = useFormikContext<FormSchema>();
 
   return (
@@ -29,12 +28,11 @@ const AppFormPicker = ({
         icon={icon}
         items={items}
         placeholder={placeholder}
-        selectedItem={selected}
         onSelectItem={(item) => {
-          setSelected(item);
-          setFieldValue(name, item.value);
+          setFieldValue(name, item);
           setFieldTouched(name, true, false);
         }}
+        selectedItem={values[name]?.label}
         numColumns={numColumns}
         style={{ width: '75%' }}
         pickerType={pickerType}
@@ -60,4 +58,7 @@ type AppFormPickerProps = {
 type AppFormPickerUseFormikContext = {
   touched: FormikTouched<{ [name: string]: boolean }>;
   errors: FormikErrors<{ [name: string]: string }>;
-} & Pick<FormikContextType<FormSchema>, 'handleChange' | 'setFieldTouched' | 'setFieldValue'>;
+} & Pick<
+  FormikContextType<FormSchema>,
+  'handleChange' | 'setFieldTouched' | 'setFieldValue' | 'values'
+>;

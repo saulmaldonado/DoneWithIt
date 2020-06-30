@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import AppTextInput from '../AppTextInput';
 import AppErrorMessage from './AppErrorMessage';
@@ -7,17 +7,21 @@ import { AppTextInputProps } from '../AppTextInput';
 
 const AppFormField = ({ name, ...props }: AppFormFieldProps) => {
   const {
-    handleChange,
     errors,
     setFieldTouched,
     touched,
+    setFieldValue,
+    values,
   }: AppFormFieldUseFormikContext = useFormikContext<FormSchema>();
 
   return (
     <>
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
-        onChangeText={handleChange(name)}
+        onChangeText={(text) => {
+          setFieldValue(name, text);
+        }}
+        value={values[name]}
         {...props}
       />
 
@@ -37,8 +41,8 @@ type AppFormFieldProps = {
 type AppFormFieldUseFormikContext = {
   touched: FormikTouched<{ [name: string]: boolean }>;
   errors: FormikErrors<{ [name: string]: string }>;
-} & Pick<FormikContextType<FormSchema>, 'handleChange' | 'setFieldTouched'>;
+} & Pick<FormikContextType<FormSchema>, 'setFieldTouched' | 'setFieldValue' | 'values'>;
 
 type FormSchema = {
-  [name: string]: string | number | boolean;
+  [name: string]: any;
 };

@@ -34,7 +34,7 @@ const AppPicker = ({
           )}
 
           <Text style={selectedItem ? styles.text : styles.placeholderText}>
-            {selectedItem ? selectedItem.label : placeholder}
+            {selectedItem ? selectedItem : placeholder}
           </Text>
           <MaterialCommunityIcons name='chevron-down' size={25} color={colors.medium} />
         </View>

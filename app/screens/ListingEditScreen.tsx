@@ -10,6 +10,7 @@ import AppFormImagePicker from '../components/forms/AppFormImagePicker';
 import { Listing } from '../api/schemas/Listing';
 import listingsApi from '../api/listings';
 import UploadScreen from './UploadScreen';
+import { FormikBag } from 'formik';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -28,45 +29,50 @@ const validationSchema = yup.object().shape({
 
 const initialValues = {
   title: '',
-  price: 0,
+  price: '',
   categoryId: undefined,
   description: '',
   images: [],
 };
 
-const handleUploadProgress = ({ loaded, total }: any, setProgress: any) =>
-  setProgress((loaded / total) * 100);
-
-const handleSubmit = async (listing: Listing, onUpload: any) => {
-  const result = await listingsApi.postListing(listing, onUpload);
-  if (!result.ok) {
-    return alert('Could not save listing.');
-  } else {
-    return alert('Success!');
-  }
-};
 const ListingEditScreen = () => {
   const location = useLocation();
   const [uploadVisible, setUploadVisible] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
 
+  const handleUploadProgress = ({ loaded, total }: any) => setProgress((loaded / total) * 100);
+
+  const handleSubmit = async (listing: Listing, onUpload: any, { resetForm }: any) => {
+    const result = await listingsApi.postListing(listing, onUpload);
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert('Could not save listing.');
+    }
+    resetForm();
+  };
+
   return (
     <Screen style={{ padding: 10 }}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
+      <UploadScreen
+        progress={progress}
+        visible={uploadVisible}
+        onFinish={() => setUploadVisible(false)}
+      />
       <AppForm
         initialValues={initialValues}
-        onSubmit={async (values) => {
+        onSubmit={async (values, formikHelpers) => {
           setProgress(0);
           setUploadVisible(true);
           try {
-            await handleSubmit({ ...values, location } as Listing, (progressObj: any) =>
-              handleUploadProgress(progressObj, setProgress)
+            await handleSubmit(
+              { ...values, location } as Listing,
+              handleUploadProgress,
+              formikHelpers
             );
           } catch (error) {
             console.log(error);
             setUploadVisible(false);
           }
-          setUploadVisible(false);
         }}
         validationSchema={validationSchema}
       >

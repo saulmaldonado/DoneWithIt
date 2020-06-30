@@ -38,7 +38,7 @@ const AppImageInputList = ({
         onContentSizeChange={() => scrollView.current?.scrollToEnd()}
       >
         <View style={styles.list}>
-          {imageUris.map((imageUri, index) => (
+          {values[name].map((imageUri: string, index: number) => (
             <TouchableOpacity
               onPress={() => {
                 setFieldValue(
@@ -53,7 +53,11 @@ const AppImageInputList = ({
               <AppImageInput
                 imageUri={imageUri}
                 onChangeImage={(imageUri) => {
-                  onAddImage(imageUri);
+                  // setFieldValue(name, [...values[name][index], imageUri]);
+                  setFieldValue(name, () => {
+                    (values[name] as Array<string>).splice(index, 1, imageUri);
+                    return values[name];
+                  });
                 }}
               />
             </TouchableOpacity>
@@ -62,7 +66,6 @@ const AppImageInputList = ({
             imageUri={undefined}
             onChangeImage={(imageUri) => {
               setFieldValue(name, [...values[name], imageUri]);
-              onAddImage(imageUri);
             }}
           />
         </View>

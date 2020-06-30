@@ -20,7 +20,7 @@ const postListing = async (
   listingData.append('title', title);
   listingData.append('title', description);
   listingData.append('price', price.toString());
-  listingData.append('categoryId', categoryId.toString());
+  listingData.append('categoryId', categoryId.value.toString());
   listingData.append('latitude', location?.latitude.toString() ?? googleHQ.latitude);
   listingData.append('longitude', location?.longitude.toString() ?? googleHQ.longitude);
 
