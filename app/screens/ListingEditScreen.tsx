@@ -9,8 +9,7 @@ import useLocation from '../components/hooks/useLocation';
 import AppFormImagePicker from '../components/forms/AppFormImagePicker';
 import { Listing } from '../api/schemas/Listing';
 import listingsApi from '../api/listings';
-import listings from '../api/listings';
-import { FormSchema } from '../components/forms/AppForm';
+import UploadScreen from './UploadScreen';
 
 const categories = [
   { label: 'Furniture', value: 1, icon: { name: 'lamp', color: colors.primary } },
@@ -35,29 +34,39 @@ const initialValues = {
   images: [],
 };
 
-const handleUploadProgress = ({ loaded, total }: any) => console.log((loaded / total) * 100 + '%');
+const handleUploadProgress = ({ loaded, total }: any, setProgress: any) =>
+  setProgress((loaded / total) * 100);
 
 const handleSubmit = async (listing: Listing, onUpload: any) => {
   const result = await listingsApi.postListing(listing, onUpload);
   if (!result.ok) {
     return alert('Could not save listing.');
   } else {
-    alert('Success!');
+    return alert('Success!');
   }
 };
 const ListingEditScreen = () => {
   const location = useLocation();
+  const [uploadVisible, setUploadVisible] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
 
   return (
     <Screen style={{ padding: 10 }}>
+      <UploadScreen progress={progress} visible={uploadVisible} />
       <AppForm
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
+          setProgress(0);
+          setUploadVisible(true);
           try {
-            handleSubmit({ ...values, location } as Listing, handleUploadProgress);
+            await handleSubmit({ ...values, location } as Listing, (progressObj: any) =>
+              handleUploadProgress(progressObj, setProgress)
+            );
           } catch (error) {
             console.log(error);
+            setUploadVisible(false);
           }
+          setUploadVisible(false);
         }}
         validationSchema={validationSchema}
       >

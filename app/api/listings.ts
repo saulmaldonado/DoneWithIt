@@ -57,7 +57,6 @@ const postListing = async (
 
   return client.post(endpoint, listingData, {
     headers,
-    // onUploadProgress: ({ loaded, total }) => console.log((loaded / total) * 100 + '%'),
     onUploadProgress: onUpload,
   });
 };
