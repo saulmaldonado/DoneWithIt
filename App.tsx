@@ -14,8 +14,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer theme={navigationTheme}>
-        {/* <AppNavigator /> */}
-        <AuthNavigator />
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
       {!useNetInfo().isInternetReachable && <OfflineNotice />}
     </AuthContext.Provider>
