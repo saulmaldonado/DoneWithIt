@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'react-native-expo-image-cache';
 import ProfileCard from '../components/ProfileCard';
 import fonts from '../config/fonts';
 import { FeedNavigatorParamsList } from '../navigation/FeedNavigator';
@@ -21,7 +22,7 @@ type ListingDetailsProps = {
 
 const ListingDetails = ({
   route: {
-    params: { image, title, price },
+    params: { images, title, price },
   },
 }: ListingDetailsProps) => {
   const profileImage = require('../assets/mosh.jpg');
@@ -29,7 +30,7 @@ const ListingDetails = ({
 
   return (
     <View style={styles.page}>
-      <Image source={image} style={styles.image} resizeMode={'cover'} />
+      <Image uri={images[0].full} style={styles.image} />
       <View style={styles.itemInfo}>
         <Text style={styles.text}>{title}</Text>
         <Text style={{ ...styles.text, color: 'green' }}>${price}</Text>

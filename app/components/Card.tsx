@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-expo-image-cache';
 
 import fonts from '../config/fonts';
 import colors from '../config/colors';
@@ -8,7 +9,7 @@ const Card = ({ children: title, subTitle, image, onPress }: CardProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <Image source={{ uri: image }} style={styles.image} resizeMode={'cover'} />
+        <Image uri={image} style={styles.image} />
 
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>

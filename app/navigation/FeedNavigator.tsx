@@ -8,7 +8,12 @@ import { routes } from './routes';
 
 export type FeedNavigatorParamsList = {
   [routes.LISTINGS]: undefined;
-  [routes.LISTING_DETAILS]: { title: string; price: number; image: number; id: number };
+  [routes.LISTING_DETAILS]: {
+    title: string;
+    price: number;
+    images: { full: string; name: string; thumbnail: string }[];
+    id: number;
+  };
 };
 
 const Stack = createStackNavigator<FeedNavigatorParamsList>();
