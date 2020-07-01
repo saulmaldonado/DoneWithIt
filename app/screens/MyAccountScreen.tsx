@@ -13,6 +13,7 @@ import UserApi from '../api/user';
 import { ApiResponse } from 'apisauce';
 import { UserRes } from '../api/schemas/user';
 import authStorage from '../auth/storage';
+import { useAuth } from '../auth/useAuth';
 
 type User = {
   title: string;
@@ -44,36 +45,9 @@ type MyAccountScreenProps = {
   navigation: MyAccountScreenNavigationProp;
 };
 
-let profile = {
-  image: require('../assets/mosh.jpg'),
-  title: 'Mosh Hamedani',
-  subTitle: 'programmingwithmosh@gmail.com',
-};
-
 const MyAccountScreen = ({ navigation }: MyAccountScreenProps) => {
-  const auth = useContext(AuthContext);
-
-  const [currentProfile, setProfile] = useState(profile);
-
-  const getCurrentUser = async () => {
-    const id = auth?.user?.userId;
-
-    if (id) {
-      const { data } = (await UserApi.getUser(id)) as ApiResponse<UserRes>;
-      if (data) {
-        setProfile({ image: profile.image, title: data.name, subTitle: data.email });
-      }
-    }
-  };
-
-  const handleLogout = () => {
-    authStorage.removeToken();
-    auth?.setUser(null);
-  };
-
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
+  const { logout, getCurrentUser } = useAuth();
+  const currentProfile = getCurrentUser();
 
   return (
     <Screen style={{ backgroundColor: colors.light }}>
@@ -94,13 +68,13 @@ const MyAccountScreen = ({ navigation }: MyAccountScreenProps) => {
               onPress={() => navigation.navigate(item.screen)}
             />
           )}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           ItemSeparatorComponent={ListItemSeparator}
         ></FlatList>
       </View>
       <ProfileCard
         title='Logout'
-        onPress={() => handleLogout()}
+        onPress={logout}
         IconComponent={<Icon name='logout' backgroundColor={colors.warning} />}
       />
     </Screen>
