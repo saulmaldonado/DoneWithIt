@@ -12,6 +12,7 @@ import AuthContext from '../auth/context';
 import UserApi from '../api/user';
 import { ApiResponse } from 'apisauce';
 import { UserRes } from '../api/schemas/user';
+import authStorage from '../auth/storage';
 
 type User = {
   title: string;
@@ -64,6 +65,12 @@ const MyAccountScreen = ({ navigation }: MyAccountScreenProps) => {
       }
     }
   };
+
+  const handleLogout = () => {
+    authStorage.removeToken();
+    auth?.setUser(null);
+  };
+
   useEffect(() => {
     getCurrentUser();
   }, []);
@@ -93,6 +100,7 @@ const MyAccountScreen = ({ navigation }: MyAccountScreenProps) => {
       </View>
       <ProfileCard
         title='Logout'
+        onPress={() => handleLogout()}
         IconComponent={<Icon name='logout' backgroundColor={colors.warning} />}
       />
     </Screen>

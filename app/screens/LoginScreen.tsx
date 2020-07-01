@@ -10,6 +10,7 @@ import authApi from '../api/auth';
 import { LoginBody, JWTUserBody } from '../api/schemas/auth';
 import jwt from 'jwt-decode';
 import AuthContext from '../auth/context';
+import authStorage from '../auth/storage';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamsList, routes.LOGIN>;
 type LoginScreenProps = {
@@ -30,6 +31,9 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
         const user = jwt<JWTUserBody>(result.data.accessToken);
 
         authContext?.setUser(user);
+
+        const { accessToken, refreshToken } = result.data;
+        authStorage.setToken(accessToken, refreshToken);
       }
     }
   };
