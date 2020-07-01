@@ -7,7 +7,12 @@ const AppActivityIndicator = ({ visible = false }) => {
     return null;
   }
   return (
-    <LottieView autoPlay loop source={require('../assets/animations/lf30_editor_owZUb4.json')} />
+    <LottieView
+      style={{ position: 'absolute', zIndex: 100 }}
+      autoPlay
+      loop
+      source={require('../assets/animations/lf30_editor_owZUb4.json')}
+    />
   );
 };
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import AuthContext from './context';
 import authStorage from './storage';
 import { ApiResponse } from 'apisauce';
@@ -7,6 +7,7 @@ import userApi from '../api/user';
 import jwt from 'jwt-decode';
 import { JWTUserBody, AuthRegisterBody } from '../api/schemas/auth';
 import authApi from '../api/auth';
+import useApi from '../components/hooks/useApi';
 
 type Profile = {
   image?: any;
@@ -23,6 +24,7 @@ let defaultProfile: Profile = {
 export const useAuth = () => {
   const { setUser, user } = useContext(AuthContext);
   const [profile, setProfile] = useState(defaultProfile);
+  const registerApi = useApi(authApi.register);
 
   const setNewUser = (accessToken: string) => {
     const user = jwt<JWTUserBody>(accessToken);
@@ -47,14 +49,14 @@ export const useAuth = () => {
 
   const register = async (
     credentials: AuthRegisterBody,
-    setError: React.Dispatch<React.SetStateAction<string | undefined>>
+    setError: Dispatch<SetStateAction<string | undefined>>
   ) => {
-    const result = await authApi.register(credentials);
+    const result = await registerApi.request(credentials);
 
     if (!result.ok) {
       const errorMessage = result.data!;
       console.log(errorMessage);
-      return setError(errorMessage);
+      setError(errorMessage);
     } else {
       const { accessToken, refreshToken } = result.data!;
       await authStorage.setTokens(accessToken, refreshToken);
@@ -69,5 +71,5 @@ export const useAuth = () => {
     return profile;
   };
 
-  return { setUser, user, logout, profile, getCurrentUser, setNewUser, register };
+  return { setUser, user, logout, profile, getCurrentUser, setNewUser, register, registerApi };
 };

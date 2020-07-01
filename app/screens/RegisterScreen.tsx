@@ -17,6 +17,7 @@ import { routes } from '../navigation/routes';
 import authApi from '../api/auth';
 import { AuthRegisterBody } from '../api/schemas/auth';
 import { useAuth } from '../auth/useAuth';
+import AppActivityIndicator from '../components/AppActivityIndicator';
 
 const initialValues = {
   name: '',
@@ -32,10 +33,14 @@ type RegisterScreenProps = {
 
 const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
   const [error, setError] = useState<string | undefined>(undefined);
-  const { register } = useAuth();
+  const {
+    register,
+    registerApi: { loading },
+  } = useAuth();
 
   return (
     <Screen style={styles.container}>
+      <AppActivityIndicator visible={loading} />
       <AppErrorMessage error={error} visible={!!error} />
       <AppForm
         initialValues={initialValues}

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
 import Screen from '../components/Screen';
@@ -8,11 +8,6 @@ import colors from '../config/colors';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AccountNavigatorParamsList } from '../navigation/AccountNavigator';
 import { routes } from '../navigation/routes';
-import AuthContext from '../auth/context';
-import UserApi from '../api/user';
-import { ApiResponse } from 'apisauce';
-import { UserRes } from '../api/schemas/user';
-import authStorage from '../auth/storage';
 import { useAuth } from '../auth/useAuth';
 
 type User = {
