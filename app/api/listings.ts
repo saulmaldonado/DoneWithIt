@@ -1,16 +1,14 @@
 import client from './client';
 import { Listing, EditListingForm, Location } from './schemas/Listing';
 import { ApiResponse } from 'apisauce';
+import { authHeaders } from './authHeaders';
 
 const endpoint = '/listings';
+
 const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImV4cCI6MTc2NTc3ODQwMDAwMH0._esbrd7d82bOs3dVmQm4weuNDOwgW2YpWSeE9WhM0Fw';
 const headers = { Authorization: `Bearer ${token}` };
 
-const getListings = () => client.get(endpoint);
-// const postListing = (listing: FormData) => client.post(endpoint, listing);
-
-// ListingEditScreen type + Location
 type listingFormData = EditListingForm & { location: Location };
 
 type FormDataImage = {
@@ -18,6 +16,10 @@ type FormDataImage = {
   type?: string;
   name?: string;
 };
+
+const getListings = () => client.get(endpoint);
+
+// ListingEditScreen type + Location
 
 const postListing = async (
   { title, price, categoryId, location, description, images }: listingFormData,
@@ -57,10 +59,8 @@ const postListing = async (
     listingData.append('images', (imageBlob as unknown) as Blob);
   });
 
-  // testing token
-
   return client.post(endpoint, listingData, {
-    headers,
+    headers: { Authorization: await authHeaders() },
     onUploadProgress: onUpload,
   });
 };

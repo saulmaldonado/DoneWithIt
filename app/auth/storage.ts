@@ -45,6 +45,7 @@ const extractUser = async (): Promise<JWTUserBody | null> => {
 
 export default {
   setToken,
+  getToken,
   extractUser,
   removeToken,
 };
