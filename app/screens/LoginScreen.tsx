@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
         authContext?.setUser(user);
 
         const { accessToken, refreshToken } = result.data;
-        authStorage.setToken(accessToken, refreshToken);
+        authStorage.setTokens(accessToken, refreshToken);
       }
     }
   };

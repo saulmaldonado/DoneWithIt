@@ -4,6 +4,9 @@ import authStorage from './storage';
 import { ApiResponse } from 'apisauce';
 import { UserRes } from '../api/schemas/user';
 import userApi from '../api/user';
+import jwt from 'jwt-decode';
+import { JWTUserBody, AuthRegisterBody } from '../api/schemas/auth';
+import authApi from '../api/auth';
 
 type Profile = {
   image?: any;
@@ -21,6 +24,11 @@ export const useAuth = () => {
   const { setUser, user } = useContext(AuthContext);
   const [profile, setProfile] = useState(defaultProfile);
 
+  const setNewUser = (accessToken: string) => {
+    const user = jwt<JWTUserBody>(accessToken);
+    setUser(user);
+  };
+
   const logout = () => {
     authStorage.removeToken();
     setUser(null);
@@ -37,6 +45,23 @@ export const useAuth = () => {
     }
   };
 
+  const register = async (
+    credentials: AuthRegisterBody,
+    setError: React.Dispatch<React.SetStateAction<string | undefined>>
+  ) => {
+    const result = await authApi.register(credentials);
+
+    if (!result.ok) {
+      const errorMessage = result.data!;
+      console.log(errorMessage);
+      return setError(errorMessage);
+    } else {
+      const { accessToken, refreshToken } = result.data!;
+      await authStorage.setTokens(accessToken, refreshToken);
+      setNewUser(accessToken);
+    }
+  };
+
   const getCurrentUser = () => {
     useEffect(() => {
       fetchUser();
@@ -44,5 +69,5 @@ export const useAuth = () => {
     return profile;
   };
 
-  return { setUser, user, logout, profile, getCurrentUser };
+  return { setUser, user, logout, profile, getCurrentUser, setNewUser, register };
 };

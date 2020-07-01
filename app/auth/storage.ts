@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import jwt from 'jwt-decode';
 import { JWTUserBody } from '../api/schemas/auth';
 
-const setToken = async (access: string, refresh: string) => {
+const setTokens = async (access: string, refresh: string) => {
   try {
     await SecureStore.setItemAsync('access', access);
     await SecureStore.setItemAsync('refresh', refresh);
@@ -44,7 +44,7 @@ const extractUser = async (): Promise<JWTUserBody | null> => {
 };
 
 export default {
-  setToken,
+  setTokens,
   getToken,
   extractUser,
   removeToken,
