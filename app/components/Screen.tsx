@@ -1,13 +1,5 @@
-import React, { ReactChildren, ReactNode } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  StyleSheetProperties,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import React, { ReactNode } from 'react';
+import { StyleSheet, View, SafeAreaView, StyleProp, ViewStyle, Text } from 'react-native';
 import Constants from 'expo-constants';
 import colors from '../config/colors';
 
