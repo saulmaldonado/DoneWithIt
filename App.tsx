@@ -8,9 +8,10 @@ import OfflineNotice from './app/components/OfflineNotice';
 import { useNetInfo } from '@react-native-community/netinfo';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import AuthContext from './app/auth/context';
+import { JWTUserBody } from './app/api/schemas/auth';
 
 export default function App() {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<JWTUserBody | null>(null);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer theme={navigationTheme}>

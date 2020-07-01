@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { StyleSheet, Text, View, SectionList, FlatList } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
 import Screen from '../components/Screen';
 import Icon from '../components/Icon';
@@ -8,12 +8,10 @@ import colors from '../config/colors';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AccountNavigatorParamsList } from '../navigation/AccountNavigator';
 import { routes } from '../navigation/routes';
-
-const profile = {
-  image: require('../assets/mosh.jpg'),
-  title: 'Mosh Hamedani',
-  subTitle: 'programmingwithmosh@gmail.com',
-};
+import AuthContext from '../auth/context';
+import UserApi from '../api/user';
+import { ApiResponse } from 'apisauce';
+import { UserRes } from '../api/schemas/user';
 
 type User = {
   title: string;
@@ -45,13 +43,37 @@ type MyAccountScreenProps = {
   navigation: MyAccountScreenNavigationProp;
 };
 
+let profile = {
+  image: require('../assets/mosh.jpg'),
+  title: 'Mosh Hamedani',
+  subTitle: 'programmingwithmosh@gmail.com',
+};
+
 const MyAccountScreen = ({ navigation }: MyAccountScreenProps) => {
+  const auth = useContext(AuthContext);
+
+  const [currentProfile, setProfile] = useState(profile);
+
+  const getCurrentUser = async () => {
+    const id = auth?.user?.userId;
+
+    if (id) {
+      const { data } = (await UserApi.getUser(id)) as ApiResponse<UserRes>;
+      if (data) {
+        setProfile({ image: profile.image, title: data.name, subTitle: data.email });
+      }
+    }
+  };
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
   return (
     <Screen style={{ backgroundColor: colors.light }}>
       <ProfileCard
-        profileIcon={profile.image}
-        title={profile.title}
-        subTitle={profile.subTitle}
+        profileIcon={currentProfile.image}
+        title={currentProfile.title}
+        subTitle={currentProfile.subTitle}
         onPress={() => console.log('Account card pressed')}
         style={{ marginTop: 20 }}
       />
