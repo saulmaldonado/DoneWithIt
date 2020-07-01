@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, TextInputProps, ViewStyle } from 'react-na
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
 import fonts from '../config/fonts';
+import { MaterialCommunityIconType } from '../config/icons';
 
 const AppTextInput = ({ icon, iconSize = 35, style, ...props }: AppTextInputProps) => {
   return (
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 export type AppTextInputProps = {
-  icon?: string;
+  icon?: MaterialCommunityIconType;
   iconSize?: number;
   style?: ViewStyle;
 } & TextInputProps;
