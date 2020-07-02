@@ -22,6 +22,7 @@ import colors from '../config/colors';
 import * as yup from 'yup';
 import useApi from '../components/hooks/useApi';
 import AppActivityIndicator from '../components/AppActivityIndicator';
+import ContactSellerForm from '../components/forms/ContactSellerForm';
 
 type ListingDetailsNavigationProp = StackNavigationProp<
   FeedNavigatorParamsList,
@@ -34,10 +35,6 @@ type ListingDetailsProps = {
   navigation: ListingDetailsNavigationProp;
   route: ListingDetailsRouteProp;
 };
-
-const validationSchema = yup.object().shape({
-  content: yup.string().required().max(700).label('Message'),
-});
 
 const ListingDetails = ({
   route: {
@@ -70,32 +67,7 @@ const ListingDetails = ({
             subTitle={'5 Listings'}
             onPress={() => console.log('Card Tapped')}
           />
-          <AppForm<{ content: string }>
-            initialValues={{
-              content: '',
-            }}
-            onSubmit={async ({ content }, { resetForm }) => {
-              Keyboard.dismiss();
-              await request({ content, dateTime: Date.now(), listingId: id });
-              if (error) {
-                return Alert.alert('Error', 'There was an error sending your message.');
-              }
-              resetForm();
-              Alert.alert('Confirmation', 'Message has been set!');
-            }}
-            validationSchema={validationSchema}
-          >
-            <AppFormField
-              name='content'
-              placeholder={'Message...'}
-              maxLength={700}
-              multiline
-              numberOfLines={3}
-              scrollEnabled
-              style={{ backgroundColor: colors.white, borderRadius: 10, maxHeight: 90 }}
-            />
-            <SubmitButton title='Contact Seller' />
-          </AppForm>
+          <ContactSellerForm error={error} request={request} listingId={id} />
         </View>
       </KeyboardAvoidingView>
     </View>
