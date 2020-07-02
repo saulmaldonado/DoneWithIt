@@ -5,6 +5,7 @@ import ListingsScreen from '../screens/ListingsScreen';
 import ListingDetails from '../screens/ListingDetails';
 import { Platform } from 'react-native';
 import { routes } from './routes';
+import Constant from 'expo-constants';
 
 export type FeedNavigatorParamsList = {
   [routes.LISTINGS]: undefined;
@@ -29,9 +30,10 @@ const FeedNavigator = () => {
       <Stack.Screen
         name={routes.LISTING_DETAILS}
         component={ListingDetails}
-        options={({ route }) => ({
+        options={() => ({
+          headerStatusBarHeight: Constant.statusBarHeight - 15,
           headerShown: Platform.OS === 'android',
-          title: route.params.title,
+          title: '',
         })}
       />
     </Stack.Navigator>

@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import colors from '../config/colors';
 import useLocation from '../components/hooks/useLocation';
 import AppFormImagePicker from '../components/forms/AppFormImagePicker';
-import { Listing, EditListingForm } from '../api/schemas/Listing';
+import { EditListingForm } from '../api/schemas/Listing';
 import listingsApi from '../api/listings';
 import UploadScreen from './UploadScreen';
 import { FormikHelpers } from 'formik';
