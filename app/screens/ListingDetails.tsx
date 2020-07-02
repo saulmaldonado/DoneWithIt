@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+  Alert,
+} from 'react-native';
 import { Image } from 'react-native-expo-image-cache';
 import ProfileCard from '../components/ProfileCard';
 import fonts from '../config/fonts';
@@ -12,6 +20,8 @@ import { sendMessage } from '../api/messages';
 import AppTextInput from '../components/AppTextInput';
 import colors from '../config/colors';
 import * as yup from 'yup';
+import useApi from '../components/hooks/useApi';
+import AppActivityIndicator from '../components/AppActivityIndicator';
 
 type ListingDetailsNavigationProp = StackNavigationProp<
   FeedNavigatorParamsList,
@@ -37,6 +47,8 @@ const ListingDetails = ({
   const profileImage = require('../assets/default-profile.png');
   const profileName = 'Mosh Hamedani';
 
+  const { request, loading, error } = useApi(sendMessage);
+
   return (
     <View style={styles.page}>
       <KeyboardAvoidingView
@@ -44,6 +56,8 @@ const ListingDetails = ({
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
         style={{ flex: 1 }}
       >
+        <AppActivityIndicator visible={loading} />
+
         <Image uri={images[0].full} style={styles.image} />
         <View style={styles.container}>
           <View style={styles.itemInfo}>
@@ -60,9 +74,15 @@ const ListingDetails = ({
             initialValues={{
               content: '',
             }}
-            onSubmit={({ content }) =>
-              sendMessage({ content, dateTime: Date.now(), listingId: id })
-            }
+            onSubmit={async ({ content }, { resetForm }) => {
+              Keyboard.dismiss();
+              await request({ content, dateTime: Date.now(), listingId: id });
+              if (error) {
+                return Alert.alert('Error', 'There was an error sending your message.');
+              }
+              resetForm();
+              Alert.alert('Confirmation', 'Message has been set!');
+            }}
             validationSchema={validationSchema}
           >
             <AppFormField
