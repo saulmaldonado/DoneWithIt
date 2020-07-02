@@ -18,28 +18,30 @@ const ListingsScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <Screen style={{ backgroundColor: colors.light }}>
-      {error && (
-        <>
-          <Text>Couldn't retrieve the listings.</Text>
-          <AppButton title='Retry' onPress={loadListings}></AppButton>
-        </>
-      )}
+    <>
       {loading && <AppActivityIndicator visible={loading} />}
-      <FlatList
-        data={listings}
-        renderItem={({ item }) => (
-          <Card
-            image={item.images[0].full}
-            subTitle={`$${item.price}`}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-          >
-            {item.title}
-          </Card>
+      <Screen style={{ backgroundColor: colors.light }}>
+        {error && (
+          <>
+            <Text>Couldn't retrieve the listings.</Text>
+            <AppButton title='Retry' onPress={loadListings}></AppButton>
+          </>
         )}
-        keyExtractor={({ id }) => id.toString()}
-      ></FlatList>
-    </Screen>
+        <FlatList
+          data={listings}
+          renderItem={({ item }) => (
+            <Card
+              image={item.images[0].full}
+              subTitle={`$${item.price}`}
+              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+            >
+              {item.title}
+            </Card>
+          )}
+          keyExtractor={({ id }) => id.toString()}
+        ></FlatList>
+      </Screen>
+    </>
   );
 };
 

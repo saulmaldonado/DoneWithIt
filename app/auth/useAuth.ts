@@ -16,7 +16,7 @@ type Profile = {
 };
 
 let defaultProfile: Profile = {
-  image: require('../assets/mosh.jpg'),
+  image: require('../assets/default-profile.png'),
   title: 'Mosh Hamedani',
   subTitle: 'programmingwithmosh@gmail.com',
 };

@@ -12,7 +12,7 @@ const initialMessages = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
-    image: require('../assets/mosh.jpg'),
+    image: require('../assets/default-profile.png'),
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const initialMessages = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam mollis arcu, eu fermentum urna tristique ut. Morbi dictum, felis nec feugiat bibendum, arcu arcu vulputate dolor, eget ullamcorper tellus libero a massa. ',
-    image: require('../assets/mosh.jpg'),
+    image: require('../assets/default-profile.png'),
   },
 ];
 
@@ -61,7 +61,7 @@ const MessagesScreen = () => {
               id: 2,
               title: 'T2',
               description: 'D2',
-              image: require('../assets/mosh.jpg'),
+              image: require('../assets/default-profile.png'),
             },
           ]);
         }}

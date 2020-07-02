@@ -25,7 +25,7 @@ const ListingDetails = ({
     params: { images, title, price },
   },
 }: ListingDetailsProps) => {
-  const profileImage = require('../assets/mosh.jpg');
+  const profileImage = require('../assets/default-profile.png');
   const profileName = 'Mosh Hamedani';
 
   return (

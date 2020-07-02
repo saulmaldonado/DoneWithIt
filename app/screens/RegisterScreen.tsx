@@ -39,9 +39,9 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
   } = useAuth();
 
   return (
-    <Screen style={styles.container}>
-      <AppActivityIndicator visible={loading} />
+    <>
       <AppErrorMessage error={error} visible={!!error} />
+      <AppActivityIndicator visible={loading} />
       <AppForm
         initialValues={initialValues}
         onSubmit={({ email, name, password }) => register({ email, name, password }, setError)}
@@ -57,7 +57,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
         />
         <SubmitButton title='Register' />
       </AppForm>
-    </Screen>
+    </>
   );
 };
 
