@@ -9,6 +9,8 @@ import FeedNavigator from './FeedNavigator';
 import AccountNavigator from './AccountNavigator';
 import NewListingButton from './NewListingButton';
 import { routes } from './routes';
+import notificationsApi from '../api/notifications';
+import { navigate } from '../navigation/rootNavigation';
 
 export type AppNavigatorParamsList = {
   [routes.LISTING_EDIT]: undefined;
@@ -30,14 +32,17 @@ const AppNavigator = () => {
       return;
     }
     try {
-      const token = await Notifications.getExpoPushTokenAsync();
-      console.log(token);
+      Notifications.getExpoPushTokenAsync();
     } catch (error) {
       console.log(error, 'Error getting push token');
     }
   };
   useEffect(() => {
     registerForPushNotifications();
+
+    Notifications.addListener((notification) => {
+      navigate(routes.ACCOUNT);
+    });
   }, []);
   return (
     <Tab.Navigator>
