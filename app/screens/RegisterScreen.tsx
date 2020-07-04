@@ -18,6 +18,7 @@ import authApi from '../api/auth';
 import { AuthRegisterBody } from '../api/schemas/auth';
 import { useAuth } from '../auth/useAuth';
 import AppActivityIndicator from '../components/AppActivityIndicator';
+import AppEmailAsyncField from '../components/forms/AppEmailAsyncField';
 
 const initialValues = {
   name: '',
@@ -48,7 +49,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
       >
         <AppNameField name='name' />
 
-        <AppEmailField name='email' />
+        <AppEmailField name='email' async />
 
         <AppConfirmPasswordConfirmationFields
           name={['password', 'reenterPassword']}

@@ -40,8 +40,8 @@ type AppFormFieldProps = {
 } & AppTextInputProps;
 
 type AppFormFieldUseFormikContext = {
-  touched: FormikTouched<{ [name: string]: boolean }>;
-  errors: FormikErrors<{ [name: string]: string }>;
+  touched: FormikTouched<Record<string, boolean>>;
+  errors: FormikErrors<Record<string, string>>;
 } & Pick<FormikContextType<FormSchema>, 'setFieldTouched' | 'setFieldValue' | 'values'>;
 
 type FormSchema = {

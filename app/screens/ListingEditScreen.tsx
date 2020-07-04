@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
 import { AppForm, AppFormField, SubmitButton, AppPriceField } from '../components/forms';
 import AppFormPicker from '../components/forms/AppFormPicker';

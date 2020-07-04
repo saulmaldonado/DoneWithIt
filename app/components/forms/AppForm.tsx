@@ -1,8 +1,8 @@
-import React, { Context, useContext } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Formik, FormikConfig } from 'formik';
 import generateSchema from './generateSchema';
-import { Schema, ObjectSchema } from 'yup';
+import { ObjectSchema } from 'yup';
 
 const AppForm = <T extends {}>({
   initialValues,

@@ -1,10 +1,25 @@
 import React, { ReactNode } from 'react';
-import { StyleSheet, View, SafeAreaView, StyleProp, ViewStyle, Text } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StyleProp,
+  ViewStyle,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import Constants from 'expo-constants';
-import colors from '../config/colors';
 
 const Screen = ({ children, style }: ScreenProps) => {
-  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaView style={[styles.screen, style]}>
+      <KeyboardAvoidingView
+        behavior='position'
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
+      >
+        {children}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
 };
 
 export default Screen;

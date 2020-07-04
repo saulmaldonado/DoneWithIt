@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import asyncValidation from './AsyncTestMethods';
 
 const validations: validationsType = {
   AppNameField: yup.string().required().label('Name'),
@@ -17,8 +18,15 @@ const validations: validationsType = {
   ],
 };
 
-type validationsType = {
-  [type: string]: yup.Schema<any>[] | yup.Schema<any>;
+const asyncValidations: validationsType = {
+  AppEmailField: yup
+    .string()
+    .required()
+    .email()
+    .test('is-taken', 'Email is already taken', asyncValidation.checkEmailAvailability)
+    .label('Email'),
 };
 
-export default validations;
+type validationsType = Record<string, yup.Schema<any>[] | yup.Schema<any>>;
+
+export default { validations, asyncValidations };

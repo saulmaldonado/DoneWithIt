@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import AppFormField from './AppFormField';
 
-const AppEmailField = ({ name }: AppEmailFieldProps) => {
+const AppEmailAsyncField = ({ name }: AppEmailAsyncFieldProps) => {
   return (
     <AppFormField
       name={name}
@@ -14,11 +14,10 @@ const AppEmailField = ({ name }: AppEmailFieldProps) => {
   );
 };
 
-export default AppEmailField;
+export default AppEmailAsyncField;
 
 const styles = StyleSheet.create({});
 
-type AppEmailFieldProps = {
+type AppEmailAsyncFieldProps = {
   name: string;
-  async: boolean; // async prop will only be used externally for generating schemas
 };
