@@ -2,8 +2,8 @@ import * as yup from 'yup';
 import asyncValidation from './AsyncTestMethods';
 
 const validations: validationsType = {
-  AppNameField: yup.string().required().label('Name'),
-  AppEmailField: yup.string().required().email().label('Email'),
+  AppNameField: yup.string().trim().required().label('Name'),
+  AppEmailField: yup.string().trim().lowercase().required().email().label('Email'),
   AppPasswordField: yup.string().required().min(4).label('Password'),
   AppFormPicker: yup.mixed().defined().label('Selector'),
   AppPriceField: yup.number().required().min(1).max(10000).label('Price'),
@@ -21,6 +21,8 @@ const validations: validationsType = {
 const asyncValidations: validationsType = {
   AppEmailField: yup
     .string()
+    .trim()
+    .lowercase()
     .required()
     .email()
     .test('is-taken', 'Email is already taken', asyncValidation.checkEmailAvailability)
