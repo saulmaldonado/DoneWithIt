@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 import colors from '../../config/colors';
+import fonts from '../../config/fonts';
 
 const AppErrorMessage = ({ error, visible, style }: AppErrorMessageProps) => {
   if (!error || !visible) return null;
@@ -17,7 +18,8 @@ export default AppErrorMessage;
 const styles = StyleSheet.create({
   error: {
     color: colors.danger,
-    paddingLeft: 10,
+    fontFamily: fonts.primary,
+    paddingLeft: 15,
   },
 });
 

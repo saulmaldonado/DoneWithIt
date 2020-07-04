@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamsList } from '../navigation/AuthNavigator';
-import authStorage from '../auth/storage';
 
-import Screen from '../components/Screen';
+import { RootStackParamsList } from '../navigation/AuthNavigator';
 import {
   AppForm,
   SubmitButton,
@@ -14,11 +12,9 @@ import {
 } from '../components/forms';
 import AppEmailField from '../components/forms/AppEmailField';
 import { routes } from '../navigation/routes';
-import authApi from '../api/auth';
-import { AuthRegisterBody } from '../api/schemas/auth';
 import { useAuth } from '../auth/useAuth';
 import AppActivityIndicator from '../components/AppActivityIndicator';
-import AppEmailAsyncField from '../components/forms/AppEmailAsyncField';
+import Screen from '../components/Screen';
 
 const initialValues = {
   name: '',
@@ -38,9 +34,10 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
     register,
     registerApi: { loading },
   } = useAuth();
+  const emailField = useRef(null);
 
   return (
-    <>
+    <Screen>
       <AppErrorMessage error={error} visible={!!error} />
       <AppActivityIndicator visible={loading} />
       <AppForm
@@ -58,7 +55,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
         />
         <SubmitButton title='Register' />
       </AppForm>
-    </>
+    </Screen>
   );
 };
 

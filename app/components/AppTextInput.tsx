@@ -5,9 +5,9 @@ import colors from '../config/colors';
 import fonts from '../config/fonts';
 import { MaterialCommunityIconType } from '../config/icons';
 
-const AppTextInput = ({ icon, iconSize = 35, style, ...props }: AppTextInputProps) => {
+const AppTextInput = ({ icon, iconSize = 35, style, invalid, ...props }: AppTextInputProps) => {
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style, invalid ? styles.invalid : null]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
@@ -28,9 +28,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     borderRadius: 25,
     flexDirection: 'row',
+    marginVertical: 5,
     padding: 10,
-    marginVertical: 10,
     alignItems: 'center',
+  },
+  invalid: {
+    borderColor: colors.danger,
+    borderWidth: 2,
   },
   icon: {
     marginRight: 5,
@@ -47,4 +51,5 @@ export type AppTextInputProps = {
   icon?: MaterialCommunityIconType;
   iconSize?: number;
   style?: ViewStyle;
+  invalid?: any;
 } & TextInputProps;
